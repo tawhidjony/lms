@@ -1,0 +1,34 @@
+{
+  // ডিফল্ট ফরম্যাটার হিসেবে Prettier সেট করা
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // ফাইল সেভ করার সাথে সাথে অটোমেটিক অব্যবহৃত ইমপোর্ট কাটা এবং ESLint ফিক্স করা
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // TypeScript ও React ফাইলের জন্য সুনির্দিষ্ট ফরম্যাটার ট্যাগ
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // ESLint 9 Flat Config ফাইল সঠিকভাবে রিড করার জন্য
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
+}
