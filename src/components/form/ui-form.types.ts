@@ -8,10 +8,7 @@ import {
   SubmitHandler,
   UseFormReturn,
 } from "react-hook-form";
-import { z, ZodType } from "zod";
-
-export type TInput<TSchema extends ZodType> = z.input<TSchema>;
-export type TOutput<TSchema extends ZodType> = z.output<TSchema>;
+import * as z from "zod";
 
 export type TUiFormRef<T extends FieldValues> = {
   getValues: UseFormReturn<T>["getValues"];
@@ -26,12 +23,13 @@ export type TUiFormRef<T extends FieldValues> = {
   trigger: UseFormReturn<T>["trigger"];
 };
 
-export type TFormHandlerSubmit<T extends ZodType> = SubmitHandler<TOutput<T>>;
-
-export type TUiFormProps<TSchema extends ZodType<FieldValues>> = {
-  schema: TSchema;
-  defaultValues?: DefaultValues<TInput<TSchema>>;
-  onSubmit: TFormHandlerSubmit<TSchema>;
+export type TUiFormProps<
+  TInput extends FieldValues,
+  TOutput extends FieldValues,
+> = {
+  schema: z.ZodType<TOutput, TInput>;
+  defaultValues?: DefaultValues<TInput>;
+  onSubmit: SubmitHandler<TOutput>;
   children: ReactNode;
-  ref?: Ref<TUiFormRef<TInput<TSchema>>>;
+  ref?: Ref<TUiFormRef<TInput>>;
 } & Omit<ComponentPropsWithoutRef<"form">, "onSubmit">;

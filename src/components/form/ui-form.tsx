@@ -1,44 +1,26 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useImperativeHandle } from "react";
-import {
-  DefaultValues,
-  FieldValues,
-  FormProvider,
-  Path,
-  PathValue,
-  SetValueConfig,
-  useForm,
-} from "react-hook-form";
-import { ZodType } from "zod";
-import { type TInput, type TOutput, type TUiFormProps } from "./ui-form.types";
+import { FieldValues, FormProvider, useForm } from "react-hook-form";
+import { TUiFormProps } from "./ui-form.types";
 
-export const UiForm = <TSchema extends ZodType<FieldValues>>({
-  ref,
-  defaultValues,
-  schema,
-  onSubmit,
-  children,
-  ...formProps
-}: TUiFormProps<TSchema>) => {
-  const methods = useForm<TInput<TSchema>, unknown, TOutput<TSchema>>({
-    defaultValues: defaultValues as DefaultValues<TInput<TSchema>>,
+export function UiForm<TInput extends FieldValues, TOutput extends FieldValues>(
+  props: TUiFormProps<TInput, TOutput>,
+) {
+  const { schema, defaultValues, onSubmit, children, ref, ...formProps } =
+    props;
+
+  const methods = useForm<TInput, unknown, TOutput>({
+    mode: "all",
+    reValidateMode: "onChange",
     resolver: zodResolver(schema),
-    mode: "onBlur",
+    defaultValues,
   });
-
-  const onClear = () => methods.reset();
 
   useImperativeHandle(ref, () => ({
     getValues: methods.getValues,
     reset: methods.reset,
-    setValue: <K extends Path<TInput<TSchema>>>(
-      name: K,
-      value: PathValue<TInput<TSchema>, K>,
-      options?: SetValueConfig,
-    ) => methods.setValue(name, value, options),
-    onClear,
+    setValue: methods.setValue,
+    onClear: () => methods.reset(defaultValues),
     setError: methods.setError,
     trigger: methods.trigger,
   }));
@@ -50,6 +32,4 @@ export const UiForm = <TSchema extends ZodType<FieldValues>>({
       </form>
     </FormProvider>
   );
-};
-
-UiForm.displayName = "UiForm";
+}
