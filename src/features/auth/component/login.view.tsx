@@ -1,7 +1,8 @@
 import { FormInput } from "@/components/form/fields/form-input";
+import { FormSelect } from "@/components/form/fields/form-select";
 import { Button } from "@/components/ui";
 import { Fragment } from "react/jsx-runtime";
-import { TLoginSchemaInput } from "./schema/login.schema";
+import { TLoginSchemaInput } from "../schema/login.schema";
 
 export default function LoginView() {
   return (
@@ -17,29 +18,35 @@ export default function LoginView() {
           </div>
         </div>
       </div>
-      <label className="block text-xs font-medium text-slate-600 mb-1">
-        メールアドレス
-      </label>
       <FormInput<TLoginSchemaInput>
         name="email"
         id="email"
         type="email"
         label="メールアドレス"
         placeholder="メールアドレスを入力してください"
+        required
       />
-      <label className="block text-xs font-medium text-slate-600 mb-1">
-        パスワード
-      </label>
       <FormInput<TLoginSchemaInput>
         name="password"
         id="password"
         type="password"
         label="パスワード"
         placeholder="パスワードを入力してください"
+        required
       />
-      <label className="block text-xs font-medium text-slate-600 mb-1">
-        ロール
-      </label>
+      <FormSelect<TLoginSchemaInput>
+        name="role"
+        label="ロール"
+        id="role"
+        placeholder="ロールを選択してください"
+        options={[
+          { label: "受講者", value: "learner" },
+          { label: "制作者", value: "creator" },
+          { label: "企業管理者", value: "companyAdmin" },
+          { label: "Copia運用者", value: "operator" },
+        ]}
+        required
+      />
 
       <Button type="submit" className="w-full">
         ログイン

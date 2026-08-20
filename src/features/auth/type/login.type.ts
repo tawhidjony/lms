@@ -1,4 +1,4 @@
-import { TLoginSchemaInput } from "../component/schema/login.schema";
+import { TLoginSchemaInput } from "../schema/login.schema";
 
 export const loginDefaultValues: TLoginSchemaInput = {
   email: "",

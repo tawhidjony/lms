@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input/input";
+import { Select } from "@/components/ui";
 import React from "react";
 import {
   Controller,
@@ -10,16 +10,19 @@ import { FormItem } from "../form-item";
 import { FormLabel } from "../form-label";
 import { FormMessage } from "../form-message";
 
-type FormInputProps<TFieldValues extends FieldValues> = {
+type FormSelectProps<TFieldValues extends FieldValues> = {
   name: Path<TFieldValues>;
+  id: string;
+  options: { label: string; value: string | number }[];
   label?: string;
+  placeholder?: string;
   required?: boolean;
-} & Omit<React.ComponentPropsWithoutRef<"input">, "name" | "required">;
+} & Omit<React.ComponentPropsWithoutRef<"select">, "name" | "id" | "required">;
 
-export function FormInput<TFieldValues extends FieldValues = FieldValues>(
-  props: FormInputProps<TFieldValues>,
+export function FormSelect<TFieldValues extends FieldValues = FieldValues>(
+  props: FormSelectProps<TFieldValues>,
 ) {
-  const { name, label, required, ...rest } = props;
+  const { name, id, label, options, placeholder, required, ...rest } = props;
   const { control } = useFormContext<TFieldValues>();
   return (
     <Controller
@@ -34,12 +37,19 @@ export function FormInput<TFieldValues extends FieldValues = FieldValues>(
                 {required && <span className="text-red-500 ml-1">*</span>}
               </FormLabel>
             )}
-            <Input
-              id={name}
+            <Select
+              id={id}
               aria-invalid={fieldState.invalid && "true"}
               {...field}
               {...rest}
-            />
+            >
+              <option value="">{placeholder}</option>
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Select>
             {fieldState.error && (
               <FormMessage>{fieldState.error.message}</FormMessage>
             )}
@@ -50,4 +60,4 @@ export function FormInput<TFieldValues extends FieldValues = FieldValues>(
   );
 }
 
-FormInput.displayName = "FormInput";
+FormSelect.displayName = "FormSelect";
