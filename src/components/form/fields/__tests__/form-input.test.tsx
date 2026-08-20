@@ -47,7 +47,6 @@ function DisabledTestForm() {
 describe("FormInput", () => {
   it("renders label and input", () => {
     render(<TestForm />);
-
     expect(screen.getByRole("textbox", { name: "Name" })).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Enter name")).toBeInTheDocument();
   });

@@ -45,7 +45,6 @@ export default function LoginView() {
           { label: "企業管理者", value: "companyAdmin" },
           { label: "Copia運用者", value: "operator" },
         ]}
-        required
       />
 
       <Button type="submit" className="w-full">

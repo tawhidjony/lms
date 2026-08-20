@@ -32,9 +32,13 @@ export function FormSelect<TFieldValues extends FieldValues = FieldValues>(
         return (
           <FormItem>
             {label && (
-              <FormLabel htmlFor={name}>
+              <FormLabel htmlFor={id}>
                 {label}
-                {required && <span className="text-red-500 ml-1">*</span>}
+                {required && (
+                  <span aria-hidden="true" className="text-red-500 ml-1">
+                    *
+                  </span>
+                )}
               </FormLabel>
             )}
             <Select
