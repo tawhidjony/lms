@@ -2,30 +2,31 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { FormProvider, useForm } from "react-hook-form";
 import { describe, expect, it } from "vitest";
+import z from "zod";
+import { UiForm } from "../../ui-form";
 import { FormInput } from "../form-input";
 
-type TestFormValues = {
-  name: string;
-};
+const schema = z.object({
+  name: z.string().min(1, "Name is required"),
+});
+
+type TestFormValues = z.input<typeof schema>;
 
 function TestForm() {
-  const methods = useForm<TestFormValues>({
-    defaultValues: {
-      name: "",
-    },
-  });
-
   return (
-    <FormProvider {...methods}>
-      <form>
-        <FormInput<TestFormValues>
-          name="name"
-          label="Name"
-          placeholder="Enter name"
-          required
-        />
-      </form>
-    </FormProvider>
+    <UiForm
+      schema={schema}
+      onSubmit={(data) => {
+        console.log(data);
+      }}
+      defaultValues={{ name: "" }}
+    >
+      <FormInput<TestFormValues>
+        name="name"
+        label="Name"
+        placeholder="Enter name"
+      />
+    </UiForm>
   );
 }
 
@@ -46,6 +47,7 @@ function DisabledTestForm() {
 describe("FormInput", () => {
   it("renders label and input", () => {
     render(<TestForm />);
+
     expect(screen.getByRole("textbox", { name: "Name" })).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Enter name")).toBeInTheDocument();
   });
@@ -59,7 +61,11 @@ describe("FormInput", () => {
   });
 
   it("shows required indicator", () => {
-    render(<TestForm />);
+    render(
+      <UiForm schema={schema} defaultValues={{ name: "" }} onSubmit={() => {}}>
+        <FormInput<TestFormValues> name="name" label="Name" required />
+      </UiForm>,
+    );
     expect(screen.getByText("*")).toBeInTheDocument();
   });
 
