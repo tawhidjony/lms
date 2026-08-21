@@ -2,7 +2,7 @@ import { FormInput } from "@/components/form/fields/form-input";
 import { FormSelect } from "@/components/form/fields/form-select";
 import { Button } from "@/components/ui";
 import { Fragment } from "react/jsx-runtime";
-import { TLoginSchemaInput } from "../schema/login.schema";
+import { TLoginSchemaInput } from "../login/schema/login.schema";
 
 export default function LoginView() {
   return (
