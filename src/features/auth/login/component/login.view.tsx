@@ -2,7 +2,7 @@ import { FormInput } from "@/components/form/fields/form-input";
 import { FormSelect } from "@/components/form/fields/form-select";
 import { Button } from "@/components/ui";
 import { Fragment } from "react/jsx-runtime";
-import { TLoginSchemaInput } from "../login/schema/login.schema";
+import { TLoginSchemaInput } from "../schema/login.schema";
 
 export default function LoginView() {
   return (
@@ -41,7 +41,7 @@ export default function LoginView() {
         placeholder="ロールを選択してください"
         options={[
           { label: "受講者", value: "learner" },
-          { label: "制作者", value: "creator" },
+          { label: "creator", value: "creator" },
           { label: "企業管理者", value: "companyAdmin" },
           { label: "Copia運用者", value: "operator" },
         ]}
