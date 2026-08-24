@@ -1,10 +1,12 @@
 import { FormInput } from "@/components/form/fields/form-input";
 import { FormSelect } from "@/components/form/fields/form-select";
 import { Button } from "@/components/ui";
+import { useTranslations } from "next-intl";
 import { Fragment } from "react/jsx-runtime";
-import { TLoginSchemaInput } from "../login/schema/login.schema";
+import { TLoginSchemaInput } from "../schema/login.schema";
 
 export default function LoginView() {
+  const t = useTranslations("Auth.login");
   return (
     <Fragment>
       <div className="flex items-center gap-3 mb-6">
@@ -12,7 +14,7 @@ export default function LoginView() {
           C
         </div>
         <div>
-          <div className="font-semibold text-slate-900">Copia LMS</div>
+          <div className="font-semibold text-slate-900">{t("title")}</div>
           <div className="text-xs text-slate-500">
             ログイン · 株式会社サクラ デモ
           </div>

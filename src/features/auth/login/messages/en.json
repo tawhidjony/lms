@@ -1,0 +1,11 @@
+{
+  "Auth": {
+    "login": {
+      "title": "Welcome back",
+      "description": "Sign in to your account",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign in"
+    }
+  }
+}
