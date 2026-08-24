@@ -1,4 +1,10 @@
 export {
+  learnerLayoutLang,
+  type LearnerLayoutLang,
+  type LearnerLayoutLangKey,
+  type LearnerLayoutLangMessages,
+} from "../components/layouts/learner_layout/index.lang";
+export {
   loginLang,
   type LoginLang,
   type LoginLangMessages,
