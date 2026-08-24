@@ -1,27 +1,20 @@
 import { z } from "zod";
+import type { LoginLangMessages } from "../lang/login";
 
-export const loginSchema = z
-  .object({
-    email: z.email("メールアドレスを入力してください"),
+type LoginValidation = LoginLangMessages["validation"];
+
+export const createLoginSchema = (validation: LoginValidation) =>
+  z.object({
+    email: z.email(validation.email.required),
     password: z
       .string()
-      .min(1, "パスワードは必須です")
-      .min(8, "パスワードは8文字以上で入力してください"),
+      .min(1, validation.password.required)
+      .min(8, validation.password.min),
     role: z.enum(["learner", "creator", "companyAdmin", "operator"], {
-      error: "ロールは必須です",
+      error: validation.role.required,
     }),
-  })
-  .refine(
-    (data) =>
-      data.role === "learner" ||
-      data.role === "creator" ||
-      data.role === "companyAdmin" ||
-      data.role === "operator",
-    {
-      message: "ロールは必須です",
-      path: ["role"],
-    },
-  );
+  });
 
-export type TLoginSchemaInput = z.input<typeof loginSchema>;
-export type TLoginSchemaOutput = z.output<typeof loginSchema>;
+export type TLoginSchema = ReturnType<typeof createLoginSchema>;
+export type TLoginSchemaInput = z.input<TLoginSchema>;
+export type TLoginSchemaOutput = z.output<TLoginSchema>;

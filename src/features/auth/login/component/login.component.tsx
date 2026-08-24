@@ -2,10 +2,11 @@
 
 import { UiForm } from "@/components/form";
 import { TUiFormRef } from "@/components/form/ui-form.types";
+import { useLang } from "@/lang";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import {
-  loginSchema,
+  createLoginSchema,
   TLoginSchemaInput,
   TLoginSchemaOutput,
 } from "../schema/login.schema";
@@ -14,7 +15,11 @@ import LoginView from "./login.view";
 
 export default function LoginComponent() {
   const router = useRouter();
+  const { locale, t } = useLang();
+  const loginSchema = createLoginSchema(t.validation);
+
   const formRef = useRef<TUiFormRef<TLoginSchemaInput>>(null);
+
   const onSubmit = async (data: TLoginSchemaOutput): Promise<void> => {
     switch (data.role) {
       case "learner":
@@ -36,6 +41,7 @@ export default function LoginComponent() {
   return (
     <div className="w-full max-w-md bg-white rounded-xl border border-slate-200 shadow-sm p-6">
       <UiForm<TLoginSchemaInput, TLoginSchemaOutput>
+        key={locale}
         schema={loginSchema}
         defaultValues={loginDefaultValues}
         onSubmit={onSubmit}

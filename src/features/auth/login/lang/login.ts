@@ -14,6 +14,18 @@ export const loginLang = {
       operator: "Copia運用者",
     },
     login: "ログイン",
+    validation: {
+      email: {
+        required: "メールアドレスは必須です",
+      },
+      password: {
+        required: "パスワードは必須です",
+        min: "パスワードは8文字以上で入力してください",
+      },
+      role: {
+        required: "ロールは必須です",
+      },
+    },
   },
   en: {
     brandSubtitle: "Login · Sakura Inc. Demo",
@@ -30,6 +42,18 @@ export const loginLang = {
       operator: "Copia Operator",
     },
     login: "Login",
+    validation: {
+      email: {
+        required: "Email is required",
+      },
+      password: {
+        required: "Password is required",
+        min: "Password must be at least 8 characters long",
+      },
+      role: {
+        required: "Role is required",
+      },
+    },
   },
 };
 
