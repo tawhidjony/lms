@@ -9,7 +9,7 @@ export type LearnerSidebarItem = Omit<SidebarItemType, "label"> & {
 };
 
 export const learnerSidebar: ReadonlyArray<LearnerSidebarItem> = [
-  { icon: AiOutlineHome, labelKey: "dashboard", href: "/learner" },
+  { icon: AiOutlineHome, labelKey: "dashboard", href: "/learner/dashboard" },
   { icon: GoBook, labelKey: "myCourses", href: "/learner/my-courses" },
   {
     icon: IoNotificationsOutline,

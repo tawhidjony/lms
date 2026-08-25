@@ -20,7 +20,7 @@ export default function AppLayout({
 
       <AsideBar menuItems={sidebar} />
       <div className="lg:pl-64 min-h-screen flex flex-col">
-        <Header />
+        <Header breadcrumb={sidebar} />
         <main className="flex-1 p-4 md:p-6">{children}</main>
       </div>
     </Fragment>

@@ -2,9 +2,16 @@
 
 import { useLang } from "@/lang";
 import { Switch } from "../ui";
+import Breadcrumb from "../ui/breadcrumb/breadcrumb";
+import { SidebarItemType } from "./types";
 
-export default function Header() {
+type HeaderProps = {
+  breadcrumb: ReadonlyArray<SidebarItemType>;
+};
+
+export default function Header({ breadcrumb }: HeaderProps) {
   const { locale, setLocale } = useLang();
+
   return (
     <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-6 sticky top-0 z-20 shadow-sm">
       <div className="flex items-center gap-3">
@@ -27,9 +34,7 @@ export default function Header() {
             />
           </svg>
         </button>
-        <h1 className="text-base font-semibold text-slate-800">
-          分岐動画ビルダー
-        </h1>
+        <Breadcrumb breadcrumb={breadcrumb} />
       </div>
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2 text-xs font-medium text-slate-600">
