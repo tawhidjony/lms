@@ -1,0 +1,11 @@
+{
+  "layouts": {
+    "learnerLayout": {
+      "sidebar": {
+        "dashboard": "ダッシュボード",
+        "myCourses": "マイコース",
+        "notifications": "通知"
+      }
+    }
+  }
+}
