@@ -2,7 +2,7 @@
 
 import { UiForm } from "@/components/form";
 import { TUiFormRef } from "@/components/form/ui-form.types";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useRef } from "react";
 import {
   loginSchema,

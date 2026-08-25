@@ -4,8 +4,19 @@
       "title": "Welcome back",
       "description": "Sign in to your account",
       "email": "Email address",
+      "emailPlaceholder": "Enter your email address",
       "password": "Password",
-      "submit": "Sign in"
+      "passwordPlaceholder": "Enter your password",
+      "role": "Role",
+      "rolePlaceholder": "Select a role",
+      "roles": {
+        "learner": "Learner",
+        "creator": "Creator",
+        "companyAdmin": "Company admin",
+        "operator": "Operator"
+      },
+      "submit": "Sign in",
+      "language": "Language"
     }
   }
 }
