@@ -1,3 +1,5 @@
+"use client";
+
 import { FormInput } from "@/components/form/fields/form-input";
 import { FormSelect } from "@/components/form/fields/form-select";
 import { Button } from "@/components/ui";

@@ -3,9 +3,11 @@
 import { UiForm } from "@/components/form";
 import { TUiFormRef } from "@/components/form/ui-form.types";
 import { useRouter } from "@/i18n/navigation";
+
+import { useMessages } from "next-intl";
 import { useRef } from "react";
 import {
-  loginSchema,
+  createLoginSchema,
   TLoginSchemaInput,
   TLoginSchemaOutput,
 } from "../schema/login.schema";
@@ -14,7 +16,11 @@ import LoginView from "./login.view";
 
 export default function LoginComponent() {
   const router = useRouter();
+  const messages = useMessages();
+  const loginSchema = createLoginSchema(messages.Auth.loginValidation);
+
   const formRef = useRef<TUiFormRef<TLoginSchemaInput>>(null);
+
   const onSubmit = async (data: TLoginSchemaOutput): Promise<void> => {
     switch (data.role) {
       case "learner":

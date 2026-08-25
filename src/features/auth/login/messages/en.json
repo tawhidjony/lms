@@ -17,6 +17,18 @@
       },
       "submit": "Sign in",
       "language": "Language"
+    },
+    "loginValidation": {
+      "email": {
+        "required": "Email is required"
+      },
+      "password": {
+        "required": "Password is required",
+        "min": "Password must be at least 8 characters long"
+      },
+      "role": {
+        "required": "Role is required"
+      }
     }
   }
 }

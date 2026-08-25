@@ -17,6 +17,18 @@
       },
       "submit": "ログイン",
       "language": "言語"
+    },
+    "loginValidation": {
+      "email": {
+        "required": "メールアドレスは必須です"
+      },
+      "password": {
+        "required": "パスワードは必須です",
+        "min": "パスワードは8文字以上で入力してください"
+      },
+      "role": {
+        "required": "ロールは必須です"
+      }
     }
   }
 }
