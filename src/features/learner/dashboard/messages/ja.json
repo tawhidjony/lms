@@ -1,0 +1,19 @@
+{
+  "Learner": {
+    "dashboard": {
+      "completed": "完了",
+      "inProgress": "受講中",
+      "notStarted": "未開始",
+      "overdue": "期限超過",
+      "avgScore": "平均スコア",
+      "statusBreakdown": "ステータス内訳",
+      "segmentTitle": "{label}: {count}",
+      "certificates": {
+        "title": "取得した修了証",
+        "description": "修了の証明をダウンロード",
+        "badge": "修了証",
+        "score": "スコア {score}%"
+      }
+    }
+  }
+}

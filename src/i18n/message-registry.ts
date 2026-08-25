@@ -7,4 +7,8 @@ export const featureMessageRegistry = {
     en: () => import("@/components/layouts/messages/en.json"),
     ja: () => import("@/components/layouts/messages/ja.json"),
   },
+  learnerDashboard: {
+    en: () => import("@/features/learner/dashboard/messages/en.json"),
+    ja: () => import("@/features/learner/dashboard/messages/ja.json"),
+  },
 } as const;

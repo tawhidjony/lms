@@ -1,7 +1,10 @@
+"use client";
+
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { Locale } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
+
 const locales: { value: Locale; label: string }[] = [
   { value: "en", label: "EN" },
   { value: "ja", label: "JA" },
@@ -10,6 +13,7 @@ const locales: { value: Locale; label: string }[] = [
 export default function SwitchLocal() {
   const t = useTranslations("Auth.login");
   const locale = useLocale() as Locale;
+
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -18,9 +22,9 @@ export default function SwitchLocal() {
     if (nextLocale === locale) return;
     startTransition(() => {
       router.replace(pathname, { locale: nextLocale });
-      router.refresh();
     });
   };
+
   return (
     <div
       role="group"
