@@ -1,3 +1,5 @@
+import MyCourses from "@/features/learner/my-courses/my-courses";
+
 export default function MyCoursesPage() {
-  return <div>MyCoursesPage</div>;
+  return <MyCourses />;
 }
