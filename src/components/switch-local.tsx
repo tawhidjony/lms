@@ -6,8 +6,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
 
 const locales: { value: Locale; label: string }[] = [
-  { value: "en", label: "EN" },
   { value: "ja", label: "JA" },
+  { value: "en", label: "EN" },
 ] as const;
 
 export default function SwitchLocal() {

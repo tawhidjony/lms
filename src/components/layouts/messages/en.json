@@ -6,6 +6,14 @@
         "myCourses": "My Courses",
         "notifications": "Notifications"
       }
+    },
+    "operatorLayout": {
+      "sidebar": {
+        "dashboard": "Dashboard",
+        "tenants": "Tenants",
+        "packages": "Packages",
+        "contracts": "Contracts"
+      }
     }
   }
 }

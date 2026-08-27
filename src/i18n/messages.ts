@@ -5,6 +5,8 @@ import validation from "@/messages/en/validation.json";
 import layouts from "@/components/layouts/messages/en.json";
 import auth from "@/features/auth/login/messages/en.json";
 import learnerDashboard from "@/features/learner/dashboard/messages/en.json";
+import operatorDashboard from "@/features/operator/dashboard/messages/en.json";
+import operatorPackages from "@/features/operator/package/messages/en.json";
 
 export const messages = {
   ...common,
@@ -13,4 +15,8 @@ export const messages = {
   ...auth,
   ...layouts,
   ...learnerDashboard,
+  Operator: {
+    ...operatorDashboard.Operator,
+    ...operatorPackages.Operator,
+  },
 } as const;

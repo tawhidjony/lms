@@ -1,0 +1,34 @@
+{
+  "Operator": {
+    "packages": {
+      "title": "Subscription packages",
+      "description": "Paid plans tenants contract — pricing and limits",
+      "addPackage": "+ Add package",
+      "stats": {
+        "total": "Total packages",
+        "active": "Active plans",
+        "tenants": "Contracted tenants",
+        "mrr": "Estimated MRR"
+      },
+      "filter": "Filter:",
+      "statusFilter": {
+        "all": "All statuses",
+        "active": "Active",
+        "hidden": "Hidden",
+        "archived": "Archived"
+      },
+      "filterHint": "Tenants select a package when contracting",
+      "searchPlaceholder": "Search the table…",
+      "showingMeta": "Showing {from}–{to} of {total} total",
+      "status": {
+        "active": "Active"
+      },
+      "free": "Free",
+      "unnamed": "Unnamed",
+      "edit": "Edit",
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {current} of {total}"
+    }
+  }
+}
