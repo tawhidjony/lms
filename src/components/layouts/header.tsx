@@ -1,7 +1,6 @@
 "use client";
 
 import SwitchLocal from "../switch-local";
-import Breadcrumb from "../ui/breadcrumb/breadcrumb";
 import { SidebarItemType } from "./types";
 
 type HeaderProps = {
@@ -31,7 +30,7 @@ export default function Header({ breadcrumb }: HeaderProps) {
             />
           </svg>
         </button>
-        <Breadcrumb breadcrumb={breadcrumb} />
+        {/* <Breadcrumb breadcrumb={breadcrumb} /> */}
       </div>
       <div className="flex items-center gap-3">
         <SwitchLocal />
