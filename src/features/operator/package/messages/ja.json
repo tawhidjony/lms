@@ -1,0 +1,34 @@
+{
+  "Operator": {
+    "packages": {
+      "title": "サブスクリプションパッケージ",
+      "description": "テナントが契約する有料プラン — 価格と制限",
+      "addPackage": "+ パッケージを追加",
+      "stats": {
+        "total": "パッケージ総数",
+        "active": "有効プラン",
+        "tenants": "契約テナント",
+        "mrr": "推定MRR"
+      },
+      "filter": "フィルター:",
+      "statusFilter": {
+        "all": "すべてのステータス",
+        "active": "有効",
+        "hidden": "非表示",
+        "archived": "アーカイブ"
+      },
+      "filterHint": "テナントは契約時にパッケージを選択します",
+      "searchPlaceholder": "テーブルを検索…",
+      "showingMeta": "全{total}件中 {from}–{to}件表示",
+      "status": {
+        "active": "有効"
+      },
+      "free": "無料",
+      "unnamed": "名称なし",
+      "edit": "編集",
+      "previous": "前へ",
+      "next": "次へ",
+      "pageOf": "ページ {current} / {total}"
+    }
+  }
+}

@@ -11,4 +11,12 @@ export const featureMessageRegistry = {
     en: () => import("@/features/learner/dashboard/messages/en.json"),
     ja: () => import("@/features/learner/dashboard/messages/ja.json"),
   },
+  operatorDashboard: {
+    en: () => import("@/features/operator/dashboard/messages/en.json"),
+    ja: () => import("@/features/operator/dashboard/messages/ja.json"),
+  },
+  operatorPackages: {
+    en: () => import("@/features/operator/package/messages/en.json"),
+    ja: () => import("@/features/operator/package/messages/ja.json"),
+  },
 } as const;

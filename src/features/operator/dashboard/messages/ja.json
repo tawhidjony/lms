@@ -1,0 +1,33 @@
+{
+  "Operator": {
+    "dashboard": {
+      "overview": "Copiaプラットフォーム概要 — テナントと契約の管理",
+      "totalTenants": "テナント総数",
+      "availableTenants": "利用可能テナント",
+      "trial": "トライアル",
+      "validContract": "有効契約",
+      "recentTenants": "最近のテナント",
+      "showAll": "すべて表示",
+      "searchPlaceholder": "テーブルを検索...",
+      "showingMeta": "{from}–{to} / 全{total}件を表示",
+      "columns": {
+        "tenant": "テナント",
+        "plan": "プラン",
+        "expiryDate": "有効期限",
+        "status": "ステータス"
+      },
+      "status": {
+        "valid": "有効",
+        "trial": "トライアル"
+      },
+      "previous": "前へ",
+      "next": "次へ",
+      "pageOf": "{current} / {total} ページ",
+      "quickAction": "クイックアクション",
+      "tenantManagement": "テナント管理",
+      "packageManagement": "パッケージ管理",
+      "contractManagement": "契約管理",
+      "quickActionDescription": "Copiaオペレーターは、テナント登録、契約、請求などプラットフォーム上のビジネスを管理します。研修の進捗は各事業者の管理者が監視します。"
+    }
+  }
+}

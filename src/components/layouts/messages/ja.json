@@ -6,6 +6,14 @@
         "myCourses": "マイコース",
         "notifications": "通知"
       }
+    },
+    "operatorLayout": {
+      "sidebar": {
+        "dashboard": "ダッシュボード",
+        "tenants": "テナント",
+        "packages": "パッケージ",
+        "contracts": "契約"
+      }
     }
   }
 }

@@ -1,13 +1,9 @@
-type OpaeratorLayoutProps = {
+import OperatorAppLayout from "@/components/layouts/operator_layout/operator_layout";
+
+type OperatorLayoutProps = {
   children: React.ReactNode;
 };
 
-export default function OperatorLayout({ children }: OpaeratorLayoutProps) {
-  return (
-    <div>
-      <header>Operator Header</header>
-      <main>{children}</main>
-      <footer>Operator Footer</footer>
-    </div>
-  );
+export default function OperatorLayout({ children }: OperatorLayoutProps) {
+  return <OperatorAppLayout>{children}</OperatorAppLayout>;
 }

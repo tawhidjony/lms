@@ -10,6 +10,7 @@ export default function AsideBarItem({
 }) {
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
+  console.log(menuItems);
   return (
     <nav className="flex-1 overflow-y-auto p-3 space-y-1">
       {menuItems.length > 0 &&
