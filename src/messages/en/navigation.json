@@ -1,0 +1,9 @@
+{
+  "Navigation": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "products": "Products",
+    "settings": "Settings",
+    "logout": "Logout"
+  }
+}

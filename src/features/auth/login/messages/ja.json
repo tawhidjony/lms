@@ -1,0 +1,34 @@
+{
+  "Auth": {
+    "login": {
+      "title": "おかえりなさい",
+      "description": "アカウントにログイン",
+      "email": "メールアドレス",
+      "emailPlaceholder": "メールアドレスを入力してください",
+      "password": "パスワード",
+      "passwordPlaceholder": "パスワードを入力してください",
+      "role": "ロール",
+      "rolePlaceholder": "ロールを選択してください",
+      "roles": {
+        "learner": "受講者",
+        "creator": "制作者",
+        "companyAdmin": "企業管理者",
+        "operator": "Copia運用者"
+      },
+      "submit": "ログイン",
+      "language": "言語"
+    },
+    "loginValidation": {
+      "email": {
+        "required": "メールアドレスは必須です"
+      },
+      "password": {
+        "required": "パスワードは必須です",
+        "min": "パスワードは8文字以上で入力してください"
+      },
+      "role": {
+        "required": "ロールは必須です"
+      }
+    }
+  }
+}

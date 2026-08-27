@@ -1,4 +1,5 @@
 "use client";
+
 import { Fragment } from "react";
 import AsideBar from "./aside_bar";
 import Header from "./header";
@@ -21,7 +22,7 @@ export default function AppLayout({
       <AsideBar menuItems={sidebar} />
       <div className="lg:pl-64 min-h-screen flex flex-col">
         <Header breadcrumb={sidebar} />
-        <main className="flex-1 p-4 md:p-6">{children}</main>
+        <main className="flex-1 p-4 md:p-6 bg-[#f8fafc]">{children}</main>
       </div>
     </Fragment>
   );

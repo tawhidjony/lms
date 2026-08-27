@@ -1,0 +1,11 @@
+{
+  "layouts": {
+    "learnerLayout": {
+      "sidebar": {
+        "dashboard": "Dashboard",
+        "myCourses": "My Courses",
+        "notifications": "Notifications"
+      }
+    }
+  }
+}

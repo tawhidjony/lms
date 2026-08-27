@@ -30,5 +30,39 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+
+  // কোটেশন বা স্ট্রিং চিহ্নের (class="") ভেতর সাজেশন চালু করা
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+
+  // লিনাক্সে এডিটর ক্র্যাশ রোধ করতে ফাইল ওয়াচার এক্সক্লুড
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-entries/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true
+  },
+
+  // ফাইল অ্যাসোসিয়েশন (এটি ছাড়া Tailwind সাজেশন আসবে না)
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.html": "tailwindcss",
+    "*.js": "javascriptreact",
+    "*.jsx": "javascriptreact",
+    "*.ts": "typescriptreact",
+    "*.tsx": "typescriptreact"
+  },
+
+  // লিনাক্সে আননোন অ্যাট-রুলস এরর ইগনোর করা (@import "tailwindcss"; এর জন্য)
+  "css.lint.unknownAtRules": "ignore",
+
+  // প্রজেক্টের রুট ডিরেক্টরি ট্র্যাকিং অন করা
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "javascriptreact",
+    "javascriptreact": "javascriptreact"
+  }
 }

@@ -1,0 +1,19 @@
+{
+  "Learner": {
+    "dashboard": {
+      "completed": "Completed",
+      "inProgress": "In progress",
+      "notStarted": "Not started",
+      "overdue": "Overdue",
+      "avgScore": "Average score",
+      "statusBreakdown": "Status breakdown",
+      "segmentTitle": "{label}: {count}",
+      "certificates": {
+        "title": "Earned certificates",
+        "description": "Download proof of completion",
+        "badge": "Certificate",
+        "score": "Score {score}%"
+      }
+    }
+  }
+}

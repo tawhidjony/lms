@@ -1,8 +1,6 @@
 "use client";
 
-import { useLang } from "@/lang";
-import { Switch } from "../ui";
-import Breadcrumb from "../ui/breadcrumb/breadcrumb";
+import SwitchLocal from "../switch-local";
 import { SidebarItemType } from "./types";
 
 type HeaderProps = {
@@ -10,8 +8,6 @@ type HeaderProps = {
 };
 
 export default function Header({ breadcrumb }: HeaderProps) {
-  const { locale, setLocale } = useLang();
-
   return (
     <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-6 sticky top-0 z-20 shadow-sm">
       <div className="flex items-center gap-3">
@@ -34,26 +30,10 @@ export default function Header({ breadcrumb }: HeaderProps) {
             />
           </svg>
         </button>
-        <Breadcrumb breadcrumb={breadcrumb} />
+        {/* <Breadcrumb breadcrumb={breadcrumb} /> */}
       </div>
       <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2 text-xs font-medium text-slate-600">
-          <span
-            className={locale === "ja" ? "text-slate-900" : "text-slate-400"}
-          >
-            JA
-          </span>
-          <Switch
-            checked={locale === "en"}
-            onCheckedChange={(checked) => setLocale(checked ? "en" : "ja")}
-            aria-label="Toggle language"
-          />
-          <span
-            className={locale === "en" ? "text-slate-900" : "text-slate-400"}
-          >
-            EN
-          </span>
-        </div>
+        <SwitchLocal />
         <span className="hidden md:inline text-xs text-slate-600 bg-slate-50 border border-slate-200 rounded-md px-2.5 py-1">
           Sakura Corporation
         </span>

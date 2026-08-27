@@ -2,8 +2,8 @@
 
 import { UiForm } from "@/components/form";
 import { TUiFormRef } from "@/components/form/ui-form.types";
-import { useLang } from "@/lang";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useMessages } from "next-intl";
 import { useRef } from "react";
 import {
   createLoginSchema,
@@ -15,15 +15,15 @@ import LoginView from "./login.view";
 
 export default function LoginComponent() {
   const router = useRouter();
-  const { locale, t } = useLang();
-  const loginSchema = createLoginSchema(t.validation);
+  const messages = useMessages();
+  const loginSchema = createLoginSchema(messages);
 
   const formRef = useRef<TUiFormRef<TLoginSchemaInput>>(null);
 
   const onSubmit = async (data: TLoginSchemaOutput): Promise<void> => {
     switch (data.role) {
       case "learner":
-        router.push("/learner");
+        router.push("/learner/dashboard");
         break;
       case "creator":
         router.push("/creator");
@@ -41,7 +41,6 @@ export default function LoginComponent() {
   return (
     <div className="w-full max-w-md bg-white rounded-xl border border-slate-200 shadow-sm p-6">
       <UiForm<TLoginSchemaInput, TLoginSchemaOutput>
-        key={locale}
         schema={loginSchema}
         defaultValues={loginDefaultValues}
         onSubmit={onSubmit}
