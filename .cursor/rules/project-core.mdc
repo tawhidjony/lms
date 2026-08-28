@@ -1,0 +1,54 @@
+---
+description: Core LMS project architecture, routing, and import conventions
+alwaysApply: true
+---
+
+# LMS Project Core
+
+You MUST follow this architecture. Do not introduce patterns outside these boundaries.
+
+## Stack
+
+- Next.js 16 App Router, React 19, TypeScript (strict), Tailwind CSS v4
+- i18n: `next-intl` only — locales `en` and `ja`, default `ja`
+- Forms: `react-hook-form` + `zod` via `UiForm`
+- State: `zustand` when needed; prefer local/server state first
+- Icons: `react-icons` only
+- Path alias: `@/*` → `src/*`
+
+Before writing Next.js code, read `node_modules/next/dist/docs/` — this project uses Next.js 16 with breaking API changes.
+
+## Directory Layout
+
+```
+src/
+  app/[locale]/           # Route groups by role: (auth), (learner), (operator), (creator), (company-admin)
+  features/{role}/{name}/ # Business logic + colocated messages/
+  components/
+    ui/{name}/            # Reusable primitives (button, input, select, …)
+    form/                 # UiForm + field wrappers
+    layouts/              # Role layouts + layout messages
+  i18n/                   # routing, navigation, message-loader, registry, types
+  messages/{en,ja}/       # Global dictionaries: common, navigation, validation
+  lib/utils/              # cn() and shared utilities
+```
+
+## Routing Rules
+
+- App pages are thin wrappers — import and render a feature component only.
+- Use `Link`, `useRouter`, `redirect` from `@/i18n/navigation` — NEVER from `next/navigation` or `next/link` directly.
+- Role routes: `/learner/*`, `/operator/*`, `/creator`, `/company-admin`, auth at `/`.
+
+## Import Conventions
+
+- UI primitives: `@/components/ui` or `@/components/ui/{name}`
+- Forms: `@/components/form`, `@/components/form/fields/*`
+- Features: `@/features/{role}/{name}/{name}` (or auth component path)
+- Utils: `@/lib/utils`
+
+## Refusals
+
+- Do NOT add new UI libraries (MUI, Chakra, shadcn CLI, etc.).
+- Do NOT add alternative i18n, routing, or form libraries.
+- Do NOT put business logic in `src/app/` pages.
+- Do NOT create files outside the directory layout above without explicit user request.

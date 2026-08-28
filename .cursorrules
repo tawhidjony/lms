@@ -1,0 +1,10 @@
+This LMS project uses Cursor rules in `.cursor/rules/`. Always follow them.
+
+- `project-core.mdc` — always applies: stack, folder layout, routing, imports
+- `language.mdc` — i18n / translation workflow
+- `features.mdc` — feature module structure (auth vs operator/learner)
+- `forms.mdc` — UiForm, Zod schemas, field components
+- `design.mdc` — Tailwind design system and UI primitives
+- `testing.mdc` — Vitest and Testing Library conventions
+
+Do not introduce patterns, libraries, or file locations outside these rules.

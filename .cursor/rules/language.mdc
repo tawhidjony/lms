@@ -1,54 +1,50 @@
 ---
-description: next-intl messages architecture and auth feature folder/import conventions
+description: next-intl translation architecture and i18n workflow for all features
+globs: src/i18n/**/*,src/messages/**/*,src/**/messages/**,src/**/*.tsx
 alwaysApply: false
 ---
 
-# Strict next-intl & Auth Feature Architecture
+# Translation (i18n)
 
-You MUST STRICTLY follow this project architecture. DO NOT deviate under any circumstances. This is the sole base rule for i18n and auth features.
+You MUST follow this i18n architecture. Do not deviate.
 
-## 1. next-intl Directory & Config
+## Message File Locations
 
-- Global dictionaries MUST live in `src/messages/{en,ja}/`:
-  - `common.json`, `navigation.json`, `validation.json`
-- Feature / layout dictionaries MUST be colocated with the feature:
-  - Auth flows: `src/features/auth/{flow}/messages/{en,ja}.json`
-  - Layouts: `src/components/layouts/messages/{en,ja}.json`
-- Config: `src/i18n/request.ts`
-- Runtime load: `src/i18n/message-loader.ts` + `src/i18n/message-registry.ts`
-- Type source of truth: `src/i18n/messages.ts` (EN imports only)
-- DO NOT create translation JSON files in any other folder.
-- New feature messages MUST be registered in BOTH `message-registry.ts` AND `messages.ts`.
-- Locales are `en` and `ja` only.
+| Scope | Path |
+|-------|------|
+| Global | `src/messages/{en,ja}/common.json`, `navigation.json`, `validation.json` |
+| Auth flows | `src/features/auth/{flow}/messages/{en,ja}.json` |
+| Other features | `src/features/{role}/{name}/messages/{en,ja}.json` |
+| Layouts | `src/components/layouts/messages/{en,ja}.json` |
 
-## 2. Mandatory Coding Constraints (i18n)
+DO NOT create translation JSON anywhere else.
 
-- ALWAYS use `next-intl`:
-  - Client: `useTranslations('namespace')`, `useMessages()` for Zod
-  - Server: `getTranslations('namespace')`
-- NEVER hardcode UI text strings in `.tsx` / `.jsx` files.
-- ALWAYS use nested keys in JSON where appropriate.
-- DO NOT introduce any other translation library (`react-i18next`, `i18next`, etc.).
+## Registration (required for every new dictionary)
 
-## 3. Auth Feature Folder Architecture
+1. Add lazy loader in `src/i18n/message-registry.ts`
+2. Add EN import + spread in `src/i18n/messages.ts` (type source of truth)
 
-For every auth flow `{flow}` (e.g. `login`, `signup`):
+Both files MUST be updated — registering in only one is forbidden.
 
-```
-src/features/auth/{flow}/
-  component/{flow}.component.tsx   # logic, form, default export {Flow}Component
-  component/{flow}.view.tsx        # presentational UI + useTranslations
-  schema/{flow}.schema.ts          # create{Flow}Schema(messages) + Zod types
-  type/{flow}.type.ts              # {flow}DefaultValues
-  messages/en.json
-  messages/ja.json
+## Usage
+
+```tsx
+// Client
+const t = useTranslations("operatorDashboard");
+t("stats.totalTenants");
+
+// Server
+const t = await getTranslations("Learner.dashboard");
+
+// Zod validation
+const schema = createLoginSchema(useMessages());
 ```
 
-- NO barrel `index.ts` under auth features.
-- App pages under `src/app/[locale]/(auth)/` MUST import only the component:
-  `@/features/auth/{flow}/component/{flow}.component`
-- View is imported ONLY by its sibling component (relative `./{flow}.view`).
-- Message JSON shape:
+- Locales: `en` and `ja` only. Default locale: `ja`.
+- NEVER hardcode UI strings in `.tsx` files.
+- NEVER introduce `react-i18next`, `i18next`, or other i18n libraries.
+
+## Auth Message Shape
 
 ```json
 {
@@ -59,29 +55,28 @@ src/features/auth/{flow}/
 }
 ```
 
-- UI copy: `useTranslations("Auth.{flow}")`
-- Validation: `create{Flow}Schema(messages)` reading `messages.Auth.{flow}Validation.*`
-- Types: `T{Flow}Schema`, `T{Flow}SchemaInput`, `T{Flow}SchemaOutput`
-- Shared `Auth` root: when multiple auth flow JSONs are registered, deep-merge so `Auth.login`, `Auth.signup`, etc. coexist (shallow merge would overwrite).
+Namespace: `useTranslations("Auth.{flow}")`, validation via `messages.Auth.{flow}Validation.*`.
 
-## 4. Standard Workflow — New Auth Flow (e.g. signup)
+## Feature Message Shape
 
-1. Scaffold the folders/files under `src/features/auth/{flow}/` per section 3.
-2. Add `en.json` + `ja.json` with `Auth.{flow}` and `Auth.{flow}Validation`.
-3. Register loaders in `src/i18n/message-registry.ts` and EN import/deep-merge in `src/i18n/messages.ts`.
-4. Wire the app page to import `{Flow}Component`.
-5. Replace all UI strings with `t('key')`; preserve structure/styles; never hardcode text.
+Operator/learner features use a camelCase root key matching the namespace:
 
-## 5. Standard Workflow — UI Text / Conversion
+```json
+{ "operatorDashboard": { "title": "…", "stats": { … } } }
+```
 
-1. Extract all text into key-value pairs.
-2. Append keys to ALL locale files (`en.json` and `ja.json`) in the correct dictionary path.
+When multiple auth JSONs are registered, they deep-merge so `Auth.login`, `Auth.signup`, etc. coexist.
+
+## Adding / Converting UI Text
+
+1. Extract all strings into key-value pairs.
+2. Add keys to BOTH `en.json` and `ja.json` in the correct dictionary.
 3. Replace hardcoded text with `t('key')`.
-4. If the dictionary is new or moved, update BOTH `message-registry.ts` and `messages.ts`.
+4. Update `message-registry.ts` and `messages.ts` if the dictionary is new.
 
-## 6. Strict Enforcement & Refusal
+## Refusals
 
-- REFUSE placing JSON dictionaries outside the paths in section 1.
-- REFUSE auth UI outside `src/features/auth/{flow}/` or skipping the component/view/schema/type/messages split.
-- REFUSE registering messages in only one of `message-registry.ts` or `messages.ts`.
-- Stick strictly to `next-intl`.
+- REFUSE placing JSON dictionaries outside the paths above.
+- REFUSE hardcoded user-facing strings in components.
+- REFUSE registering messages in only one of the two i18n config files.
+- REFUSE any library other than `next-intl`.

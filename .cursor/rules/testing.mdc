@@ -1,0 +1,58 @@
+---
+description: Vitest and Testing Library conventions
+globs: **/*.{test,spec}.{ts,tsx},vitest.config.*,vitest.setup.*
+alwaysApply: false
+---
+
+# Testing
+
+## Stack
+
+- Runner: Vitest (`npm test` → `vitest --ui`)
+- Environment: `happy-dom`
+- DOM assertions: `@testing-library/jest-dom/vitest` (configured in `vitest.setup.ts`)
+- Component testing: `@testing-library/react` + `@testing-library/user-event`
+- Globals: `describe`, `it`, `expect`, `vi` available without imports (but import explicitly for clarity)
+
+## File Placement
+
+- UI primitives: colocate `{name}.test.tsx` next to `{name}.tsx`
+- Form fields: `src/components/form/fields/__tests__/{name}.test.tsx`
+
+## Test Structure
+
+```tsx
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
+
+describe("Button", () => {
+  it("calls onClick", async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(<Button onClick={onClick}>Save</Button>);
+    await user.click(screen.getByRole("button", { name: "Save" }));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+## Conventions
+
+- Query by role/label/text — avoid `container.querySelector` and test IDs unless testing icons
+- Use `userEvent.setup()` for interactions (not `fireEvent`)
+- Use `vi.fn()` for callbacks, `vi.mock()` sparingly
+- Form field tests: wrap in `UiForm` or `FormProvider` with a minimal Zod schema
+- Test behavior and accessibility — not implementation details or CSS class names
+- One `describe` block per component, multiple focused `it` blocks
+
+## Path Alias
+
+`@/` resolves to `src/` in tests (configured in `vitest.config.mts`).
+
+## Refusals
+
+- Do NOT use Jest — this project uses Vitest only.
+- Do NOT add Playwright/Cypress unless explicitly requested.
+- Do NOT snapshot entire component trees — prefer semantic queries.
+- Do NOT skip tests for new UI primitives or form fields.
