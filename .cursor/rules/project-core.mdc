@@ -1,54 +1,87 @@
 ---
-description: Core LMS project architecture, routing, and import conventions
+description: Next.js 16, React 19, Tailwind v4, next-intl, Zustand, and Vitest standards for this LMS project
+globs: **/*.{ts,tsx,js,jsx}
 alwaysApply: true
 ---
 
-# LMS Project Core
+# LMS Project Architecture & Coding Standards
 
-You MUST follow this architecture. Do not introduce patterns outside these boundaries.
+## Core Tech Stack
 
-## Stack
+- **Framework**: Next.js 16 (App Router) with React 19
+- **Styling**: Tailwind CSS v4 with `clsx` and `tailwind-merge` (`cn` utility)
+- **Internationalization**: `next-intl` — strictly follow project folder & route layout (see `language.mdc`)
+- **State Management**: Zustand when needed; prefer local/server state first
+- **Forms & Validation**: React Hook Form + Zod via `UiForm` (`@hookform/resolvers`)
+- **Testing**: Vitest with React Testing Library and `@testing-library/jest-dom`
+- **Icons**: `react-icons` only
+- **Path alias**: `@/*` → `src/*`
 
-- Next.js 16 App Router, React 19, TypeScript (strict), Tailwind CSS v4
-- i18n: `next-intl` only — locales `en` and `ja`, default `ja`
-- Forms: `react-hook-form` + `zod` via `UiForm`
-- State: `zustand` when needed; prefer local/server state first
-- Icons: `react-icons` only
-- Path alias: `@/*` → `src/*`
-
-Before writing Next.js code, read `node_modules/next/dist/docs/` — this project uses Next.js 16 with breaking API changes.
+Before writing Next.js code, read `node_modules/next/dist/docs/` — Next.js 16 has breaking API changes.
 
 ## Directory Layout
 
 ```
 src/
-  app/[locale]/           # Route groups by role: (auth), (learner), (operator), (creator), (company-admin)
+  app/[locale]/           # Route groups: (auth), (learner), (operator), (creator), (company-admin)
   features/{role}/{name}/ # Business logic + colocated messages/
   components/
     ui/{name}/            # Reusable primitives (button, input, select, …)
     form/                 # UiForm + field wrappers
     layouts/              # Role layouts + layout messages
   i18n/                   # routing, navigation, message-loader, registry, types
-  messages/{en,ja}/       # Global dictionaries: common, navigation, validation
+  messages/{en,ja}/       # Global: common, navigation, validation
   lib/utils/              # cn() and shared utilities
 ```
 
-## Routing Rules
+## React 19 & Next.js 16
+
+- **Server vs Client**: Default to React Server Components. Add `'use client'` only when client interactivity is required (state, event listeners, hooks).
+- **Async Components**: Fetch server data directly in RSC with async/await.
+- **Strict Typing**: TypeScript strict mode. Never use `any`. Define explicit types/interfaces for props, forms, and store states.
+- **Navigation**: Use `Link`, `useRouter`, `redirect` from `@/i18n/navigation` — NEVER `next/navigation` or `next/link`.
+
+## Routing & Pages
 
 - App pages are thin wrappers — import and render a feature component only.
-- Use `Link`, `useRouter`, `redirect` from `@/i18n/navigation` — NEVER from `next/navigation` or `next/link` directly.
 - Role routes: `/learner/*`, `/operator/*`, `/creator`, `/company-admin`, auth at `/`.
+- New pages, components, and flows MUST follow the existing folder architecture (see `features.mdc`).
 
-## Import Conventions
+## Styling (Tailwind v4)
 
-- UI primitives: `@/components/ui` or `@/components/ui/{name}`
-- Forms: `@/components/form`, `@/components/form/fields/*`
-- Features: `@/features/{role}/{name}/{name}` (or auth component path)
-- Utils: `@/lib/utils`
+- Use `cn()` from `@/lib/utils` for conditional class joining.
+- Utility-first inline classes only. Avoid raw CSS except global variables in `globals.css`.
+
+## Forms & Validation
+
+- Use `UiForm` from `@/components/form` with Zod schemas.
+- Schema factory: `create{Name}Schema(messages)` in `schema/{name}.schema.ts`.
+- Types: `T{Name}Schema`, `T{Name}SchemaInput`, `T{Name}SchemaOutput` (or `z.infer<typeof schema>` for simple cases).
+- Field components: `FormInput`, `FormSelect`, `FormTextarea` from `@/components/form/fields`.
+- Always generate a Zod schema alongside any input form.
+
+## Internationalization
+
+- Locales: `en` and `ja` only. Default: `ja`.
+- Never hardcode user-facing strings — use `useTranslations` (client) or `getTranslations` (server).
+- Register new dictionaries in BOTH `message-registry.ts` and `messages.ts`.
+
+## Testing
+
+- Vitest + `@testing-library/react` + `user-event`.
+- Colocate `{name}.test.tsx` next to components, or use `__tests__/` for form fields.
+- Query by role/label — test behavior, not implementation details.
+
+## AI Instructions
+
+1. **New files**: Place pages, components, and feature flows strictly per existing architecture.
+2. **Forms**: Auto-generate Zod schema + types with every form.
+3. **Icons**: `react-icons` only.
+4. **Imports**: UI from `@/components/ui`, forms from `@/components/form`, features from `@/features/{role}/{name}`.
 
 ## Refusals
 
-- Do NOT add new UI libraries (MUI, Chakra, shadcn CLI, etc.).
+- Do NOT add UI libraries (MUI, Chakra, shadcn CLI, etc.).
 - Do NOT add alternative i18n, routing, or form libraries.
 - Do NOT put business logic in `src/app/` pages.
-- Do NOT create files outside the directory layout above without explicit user request.
+- Do NOT create files outside the directory layout without explicit user request.

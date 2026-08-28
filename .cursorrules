@@ -1,6 +1,6 @@
 This LMS project uses Cursor rules in `.cursor/rules/`. Always follow them.
 
-- `project-core.mdc` — always applies: stack, folder layout, routing, imports
+- `project-core.mdc` — always applies: stack, RSC/client, typing, routing, forms, testing
 - `language.mdc` — i18n / translation workflow
 - `features.mdc` — feature module structure (auth vs operator/learner)
 - `forms.mdc` — UiForm, Zod schemas, field components
