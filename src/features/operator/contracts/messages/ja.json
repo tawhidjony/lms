@@ -1,0 +1,84 @@
+{
+  "operatorContracts": {
+    "title": "契約管理",
+    "description": "テナント全体のサブスクリプション、シート割当、請求",
+    "exportCsv": "CSV出力",
+    "exportCsvDemo": "CSVを出力しました",
+    "addContract": "+ 契約を追加",
+    "stats": {
+      "activeContracts": "有効契約",
+      "monthlyRevenue": "月次売上",
+      "seatOverage": "シート超過"
+    },
+    "filter": "フィルター:",
+    "statusFilter": {
+      "all": "すべてのステータス",
+      "active": "有効",
+      "trial": "トライアル",
+      "suspended": "停止",
+      "expired": "期限切れ"
+    },
+    "planFilter": {
+      "all": "すべてのプラン",
+      "enterprise": "エンタープライズ",
+      "professional": "プロフェッショナル",
+      "trial": "トライアル"
+    },
+    "searchHint": "テーブル検索でテナント名を検索",
+    "searchPlaceholder": "テーブルを検索…",
+    "showingMeta": "全{total}件中 {from}–{to}件表示",
+    "columns": {
+      "tenant": "テナント",
+      "plan": "プラン",
+      "seats": "シート",
+      "used": "使用",
+      "start": "開始",
+      "renewal": "更新",
+      "monthly": "月額",
+      "status": "ステータス",
+      "actions": "操作"
+    },
+    "previous": "前へ",
+    "next": "次へ",
+    "pageOf": "ページ {current} / {total}",
+    "form": {
+      "addTitle": "契約を追加",
+      "tenant": "テナント",
+      "plan": "プラン",
+      "status": "ステータス",
+      "seatAllocation": "シート割当",
+      "usedSeats": "使用シート",
+      "startDate": "開始日",
+      "renewalDate": "更新日",
+      "monthlyFee": "月額料金（¥）",
+      "notes": "備考",
+      "notesPlaceholder": "請求に関する任意のメモ",
+      "cancel": "キャンセル",
+      "save": "契約を保存",
+      "planOptions": {
+        "enterprise": "エンタープライズ",
+        "professional": "プロフェッショナル",
+        "trial": "トライアル"
+      },
+      "statusOptions": {
+        "active": "有効",
+        "trial": "トライアル",
+        "suspended": "停止",
+        "expired": "期限切れ"
+      }
+    },
+    "statusModal": {
+      "title": "契約ステータスの変更",
+      "current": "現在:",
+      "newStatus": "新しいステータス",
+      "cancel": "キャンセル",
+      "update": "ステータス更新",
+      "statusOptions": {
+        "active": "有効 — 請求中",
+        "trial": "トライアル — 月額なし",
+        "suspended": "停止 — 支払い問題",
+        "expired": "期限切れ — 契約終了"
+      }
+    }
+  }
+}

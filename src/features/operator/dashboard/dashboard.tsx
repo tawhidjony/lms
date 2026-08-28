@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
 export default function OperatorDashboard() {
@@ -194,24 +195,24 @@ export default function OperatorDashboard() {
             {t("quickAction.title")}
           </h2>
           <div className="space-y-2">
-            <a
-              href="tenants.html"
+            <Link
+              href="/operator/tenants"
               className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 w-full text-center"
             >
               {t("quickAction.tenantManagement")}
-            </a>
-            <a
-              href="packages.html"
+            </Link>
+            <Link
+              href="/operator/packages"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 w-full text-center"
             >
               {t("quickAction.packageManagement")}
-            </a>
-            <a
-              href="contracts.html"
+            </Link>
+            <Link
+              href="/operator/contracts"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 w-full text-center"
             >
               {t("quickAction.contractManagement")}
-            </a>
+            </Link>
           </div>
           <p className="text-xs text-slate-500 mt-4 pt-4 border-t border-slate-100">
             {t("quickAction.description")}

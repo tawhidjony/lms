@@ -1,35 +1,36 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 export default function OperatorContracts() {
+  const t = useTranslations("operatorContracts");
   return (
     <>
       <div className="flex flex-wrap justify-between items-start gap-3 mb-6">
         <div>
-          <h2 className="text-lg font-semibold text-slate-800">契約管理</h2>
-          <p className="text-sm text-slate-500">
-            テナント全体のサブスクリプション、シート割当、請求
-          </p>
+          <h2 className="text-lg font-semibold text-slate-800">{t("title")}</h2>
+          <p className="text-sm text-slate-500">{t("description")}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button
             className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-            data-demo-save="CSVを出力しました"
+            data-demo-save={t("exportCsvDemo")}
           >
-            CSV出力
+            {t("exportCsv")}
           </button>
           <button
             id="btnAddContract"
             type="button"
             className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
           >
-            + 契約を追加
+            {t("addContract")}
           </button>
         </div>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            有効契約
+            {t("stats.activeContracts")}
           </div>
           <div
             className="text-2xl font-bold text-slate-900"
@@ -40,7 +41,7 @@ export default function OperatorContracts() {
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            月次売上
+            {t("stats.monthlyRevenue")}
           </div>
           <div
             className="text-2xl font-bold text-slate-900"
@@ -51,7 +52,7 @@ export default function OperatorContracts() {
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            シート超過
+            {t("stats.seatOverage")}
           </div>
           <div
             className="text-2xl font-bold text-red-600"
@@ -64,29 +65,29 @@ export default function OperatorContracts() {
       <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm mb-4">
         <div className="flex flex-wrap gap-3 items-center">
           <label className="text-xs font-medium text-slate-600 shrink-0">
-            フィルター:
+            {t("filter")}
           </label>
           <select
             id="contractStatusFilter"
             className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
           >
-            <option value="all">すべてのステータス</option>
-            <option value="active">有効</option>
-            <option value="trial">トライアル</option>
-            <option value="suspended">停止</option>
-            <option value="expired">期限切れ</option>
+            <option value="all">{t("statusFilter.all")}</option>
+            <option value="active">{t("statusFilter.active")}</option>
+            <option value="trial">{t("statusFilter.trial")}</option>
+            <option value="suspended">{t("statusFilter.suspended")}</option>
+            <option value="expired">{t("statusFilter.expired")}</option>
           </select>
           <select
             id="contractPlanFilter"
             className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
           >
-            <option value="all">すべてのプラン</option>
-            <option value="Enterprise">エンタープライズ</option>
-            <option value="Professional">プロフェッショナル</option>
-            <option value="Trial">トライアル</option>
+            <option value="all">{t("planFilter.all")}</option>
+            <option value="Enterprise">{t("planFilter.enterprise")}</option>
+            <option value="Professional">{t("planFilter.professional")}</option>
+            <option value="Trial">{t("planFilter.trial")}</option>
           </select>
           <span className="text-xs text-slate-400 ml-auto">
-            テーブル検索でテナント名を検索
+            {t("searchHint")}
           </span>
         </div>
       </div>
@@ -94,11 +95,11 @@ export default function OperatorContracts() {
         <div className="copia-table-toolbar flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b border-slate-100 bg-white">
           <input
             type="search"
-            placeholder="テーブルを検索…"
+            placeholder={t("searchPlaceholder")}
             className="copia-table-search w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:max-w-xs"
           />
           <span className="copia-table-meta text-xs text-slate-500 sm:ml-auto">
-            全12件中 1–8件表示
+            {t("showingMeta", { from: 1, to: 8, total: 12 })}
           </span>
         </div>
         <div className="overflow-x-auto">
@@ -112,31 +113,31 @@ export default function OperatorContracts() {
             <thead>
               <tr>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  テナント
+                  {t("columns.tenant")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  プラン
+                  {t("columns.plan")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  シート
+                  {t("columns.seats")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  使用
+                  {t("columns.used")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  開始
+                  {t("columns.start")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  更新
+                  {t("columns.renewal")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  月額
+                  {t("columns.monthly")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  ステータス
+                  {t("columns.status")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  操作
+                  {t("columns.actions")}
                 </th>
               </tr>
             </thead>
@@ -859,7 +860,7 @@ export default function OperatorContracts() {
               className="copia-table-page-btn inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 "
               disabled
             >
-              前へ
+              {t("previous")}
             </button>
             <div className="flex flex-wrap items-center gap-1">
               <button
@@ -879,10 +880,10 @@ export default function OperatorContracts() {
               type="button"
               className="copia-table-page-btn inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 "
             >
-              次へ
+              {t("next")}
             </button>
           </div>
-          <span className="text-slate-500">ページ 1 / 2</span>
+          <span className="text-slate-500">{t("pageOf", { current: 1, total: 2 })}</span>
         </div>
       </div>
       <div
@@ -894,12 +895,12 @@ export default function OperatorContracts() {
             id="contractFormTitle"
             className="font-semibold text-slate-800 mb-4"
           >
-            契約を追加
+            {t("form.addTitle")}
           </h3>
           <div className="grid sm:grid-cols-2 gap-3 text-sm">
             <div className="sm:col-span-2">
               <label className="text-xs font-medium text-slate-600">
-                テナント
+                {t("form.tenant")}
               </label>
               <select
                 id="contractFormTenant"
@@ -908,34 +909,34 @@ export default function OperatorContracts() {
             </div>
             <div>
               <label className="text-xs font-medium text-slate-600">
-                プラン
+                {t("form.plan")}
               </label>
               <select
                 id="contractFormPlan"
                 className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
               >
-                <option value="Enterprise">エンタープライズ</option>
-                <option value="Professional">プロフェッショナル</option>
-                <option value="Trial">トライアル</option>
+                <option value="Enterprise">{t("form.planOptions.enterprise")}</option>
+                <option value="Professional">{t("form.planOptions.professional")}</option>
+                <option value="Trial">{t("form.planOptions.trial")}</option>
               </select>
             </div>
             <div>
               <label className="text-xs font-medium text-slate-600">
-                ステータス
+                {t("form.status")}
               </label>
               <select
                 id="contractFormStatus"
                 className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
               >
-                <option value="active">有効</option>
-                <option value="trial">トライアル</option>
-                <option value="suspended">停止</option>
-                <option value="expired">期限切れ</option>
+                <option value="active">{t("form.statusOptions.active")}</option>
+                <option value="trial">{t("form.statusOptions.trial")}</option>
+                <option value="suspended">{t("form.statusOptions.suspended")}</option>
+                <option value="expired">{t("form.statusOptions.expired")}</option>
               </select>
             </div>
             <div>
               <label className="text-xs font-medium text-slate-600">
-                シート割当
+                {t("form.seatAllocation")}
               </label>
               <input
                 id="contractFormSeats"
@@ -946,7 +947,7 @@ export default function OperatorContracts() {
             </div>
             <div>
               <label className="text-xs font-medium text-slate-600">
-                使用シート
+                {t("form.usedSeats")}
               </label>
               <input
                 id="contractFormUsed"
@@ -957,7 +958,7 @@ export default function OperatorContracts() {
             </div>
             <div>
               <label className="text-xs font-medium text-slate-600">
-                開始日
+                {t("form.startDate")}
               </label>
               <input
                 id="contractFormStart"
@@ -967,7 +968,7 @@ export default function OperatorContracts() {
             </div>
             <div>
               <label className="text-xs font-medium text-slate-600">
-                更新日
+                {t("form.renewalDate")}
               </label>
               <input
                 id="contractFormRenewal"
@@ -977,7 +978,7 @@ export default function OperatorContracts() {
             </div>
             <div className="sm:col-span-2">
               <label className="text-xs font-medium text-slate-600">
-                月額料金（¥）
+                {t("form.monthlyFee")}
               </label>
               <input
                 id="contractFormMonthly"
@@ -988,11 +989,11 @@ export default function OperatorContracts() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-slate-600">備考</label>
+              <label className="text-xs font-medium text-slate-600">{t("form.notes")}</label>
               <input
                 id="contractFormNote"
                 className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                placeholder="請求に関する任意のメモ"
+                placeholder={t("form.notesPlaceholder")}
               />
             </div>
           </div>
@@ -1001,14 +1002,14 @@ export default function OperatorContracts() {
               data-close-modal="contractFormModal"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
-              キャンセル
+              {t("form.cancel")}
             </button>
             <button
               id="contractFormSave"
               type="button"
               className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
             >
-              契約を保存
+              {t("form.save")}
             </button>
           </div>
         </div>
@@ -1019,7 +1020,7 @@ export default function OperatorContracts() {
       >
         <div className="bg-white rounded-xl shadow-xl max-w-sm w-full p-6">
           <h3 className="font-semibold text-slate-800 mb-2">
-            契約ステータスの変更
+            {t("statusModal.title")}
           </h3>
           <p className="text-sm text-slate-600 mb-1">
             <span
@@ -1028,33 +1029,33 @@ export default function OperatorContracts() {
             />
           </p>
           <p className="text-xs text-slate-500 mb-4">
-            現在: <span id="contractStatusCurrent" />
+            {t("statusModal.current")} <span id="contractStatusCurrent" />
           </p>
           <label className="text-xs font-medium text-slate-600">
-            新しいステータス
+            {t("statusModal.newStatus")}
           </label>
           <select
             id="contractStatusSelect"
             className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 mb-4"
           >
-            <option value="active">有効 — 請求中</option>
-            <option value="trial">トライアル — 月額なし</option>
-            <option value="suspended">停止 — 支払い問題</option>
-            <option value="expired">期限切れ — 契約終了</option>
+            <option value="active">{t("statusModal.statusOptions.active")}</option>
+            <option value="trial">{t("statusModal.statusOptions.trial")}</option>
+            <option value="suspended">{t("statusModal.statusOptions.suspended")}</option>
+            <option value="expired">{t("statusModal.statusOptions.expired")}</option>
           </select>
           <div className="flex gap-2 justify-end">
             <button
               data-close-modal="contractStatusModal"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
-              キャンセル
+              {t("statusModal.cancel")}
             </button>
             <button
               id="contractStatusSave"
               type="button"
               className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
             >
-              ステータス更新
+              {t("statusModal.update")}
             </button>
           </div>
         </div>

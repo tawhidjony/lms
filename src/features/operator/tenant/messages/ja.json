@@ -1,0 +1,88 @@
+{
+  "operatorTenant": {
+    "title": "テナント管理",
+    "description": "Copia LMSプラットフォーム上の企業を管理 ·",
+    "viewPackages": "サブスクリプションパッケージを見る",
+    "addTenant": "+ テナントを追加",
+    "stats": {
+      "total": "テナント総数",
+      "active": "有効",
+      "trial": "トライアル",
+      "suspended": "停止 / 無効"
+    },
+    "filter": "フィルター:",
+    "statusFilter": {
+      "all": "すべてのステータス",
+      "active": "有効",
+      "trial": "トライアル",
+      "suspended": "停止",
+      "inactive": "無効"
+    },
+    "planFilter": {
+      "all": "すべてのプラン",
+      "enterprise": "エンタープライズ",
+      "professional": "プロフェッショナル",
+      "trial": "トライアル"
+    },
+    "searchHint": "下のテーブル検索で名前やIDを検索",
+    "searchPlaceholder": "テーブルを検索…",
+    "showingMeta": "全{total}件中 {from}–{to}件表示",
+    "columns": {
+      "company": "会社",
+      "tenantId": "テナントID",
+      "users": "ユーザー",
+      "courses": "コース",
+      "plan": "プラン",
+      "expiry": "有効期限",
+      "status": "ステータス",
+      "actions": "操作"
+    },
+    "previous": "前へ",
+    "next": "次へ",
+    "pageOf": "ページ {current} / {total}",
+    "form": {
+      "addTitle": "テナントを追加",
+      "companyName": "会社名",
+      "companyNamePlaceholder": "Sakura Corporation",
+      "japaneseName": "日本語名",
+      "japaneseNamePlaceholder": "株式会社サクラ",
+      "tenantId": "テナントID",
+      "tenantIdPlaceholder": "SKR-001",
+      "plan": "プラン",
+      "renewalDate": "更新日",
+      "status": "ステータス",
+      "users": "ユーザー",
+      "courses": "コース",
+      "primaryContact": "主担当者",
+      "contactEmail": "連絡先メール",
+      "location": "所在地",
+      "locationPlaceholder": "東京",
+      "cancel": "キャンセル",
+      "save": "テナントを保存",
+      "planOptions": {
+        "enterprise": "エンタープライズ",
+        "professional": "プロフェッショナル",
+        "trial": "トライアル"
+      },
+      "statusOptions": {
+        "active": "有効",
+        "trial": "トライアル",
+        "suspended": "停止",
+        "inactive": "無効"
+      }
+    },
+    "statusModal": {
+      "title": "テナントステータスの変更",
+      "current": "現在:",
+      "newStatus": "新しいステータス",
+      "cancel": "キャンセル",
+      "update": "ステータス更新",
+      "statusOptions": {
+        "active": "有効 — フルアクセス",
+        "trial": "トライアル — 期間限定",
+        "suspended": "停止 — アクセス制限",
+        "inactive": "無効 — 契約終了"
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "operatorContracts": {
+    "title": "Contract management",
+    "description": "Subscriptions, seat allocation, and billing across all tenants",
+    "exportCsv": "Export CSV",
+    "exportCsvDemo": "CSV exported",
+    "addContract": "+ Add contract",
+    "stats": {
+      "activeContracts": "Active contracts",
+      "monthlyRevenue": "Monthly revenue",
+      "seatOverage": "Seat overage"
+    },
+    "filter": "Filter:",
+    "statusFilter": {
+      "all": "All statuses",
+      "active": "Active",
+      "trial": "Trial",
+      "suspended": "Suspended",
+      "expired": "Expired"
+    },
+    "planFilter": {
+      "all": "All plans",
+      "enterprise": "Enterprise",
+      "professional": "Professional",
+      "trial": "Trial"
+    },
+    "searchHint": "Search tenant names in the table",
+    "searchPlaceholder": "Search the table…",
+    "showingMeta": "Showing {from}–{to} of {total} total",
+    "columns": {
+      "tenant": "Tenant",
+      "plan": "Plan",
+      "seats": "Seats",
+      "used": "Used",
+      "start": "Start",
+      "renewal": "Renewal",
+      "monthly": "Monthly",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {current} of {total}",
+    "form": {
+      "addTitle": "Add contract",
+      "tenant": "Tenant",
+      "plan": "Plan",
+      "status": "Status",
+      "seatAllocation": "Seat allocation",
+      "usedSeats": "Used seats",
+      "startDate": "Start date",
+      "renewalDate": "Renewal date",
+      "monthlyFee": "Monthly fee (¥)",
+      "notes": "Notes",
+      "notesPlaceholder": "Optional billing notes",
+      "cancel": "Cancel",
+      "save": "Save contract",
+      "planOptions": {
+        "enterprise": "Enterprise",
+        "professional": "Professional",
+        "trial": "Trial"
+      },
+      "statusOptions": {
+        "active": "Active",
+        "trial": "Trial",
+        "suspended": "Suspended",
+        "expired": "Expired"
+      }
+    },
+    "statusModal": {
+      "title": "Change contract status",
+      "current": "Current:",
+      "newStatus": "New status",
+      "cancel": "Cancel",
+      "update": "Update status",
+      "statusOptions": {
+        "active": "Active — Billing active",
+        "trial": "Trial — No monthly fee",
+        "suspended": "Suspended — Payment issue",
+        "expired": "Expired — Contract ended"
+      }
+    }
+  }
+}
