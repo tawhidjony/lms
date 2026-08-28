@@ -49,8 +49,10 @@
       "tenantId": "テナントID",
       "tenantIdPlaceholder": "SKR-001",
       "plan": "プラン",
+      "planPlaceholder": "プランを選択",
       "renewalDate": "更新日",
       "status": "ステータス",
+      "statusPlaceholder": "ステータスを選択",
       "users": "ユーザー",
       "courses": "コース",
       "primaryContact": "主担当者",
@@ -69,6 +71,32 @@
         "trial": "トライアル",
         "suspended": "停止",
         "inactive": "無効"
+      }
+    },
+    "formValidation": {
+      "companyName": {
+        "required": "会社名は必須です"
+      },
+      "tenantId": {
+        "required": "テナントIDは必須です"
+      },
+      "plan": {
+        "required": "プランは必須です"
+      },
+      "renewalDate": {
+        "required": "更新日は必須です"
+      },
+      "status": {
+        "required": "ステータスは必須です"
+      },
+      "users": {
+        "min": "ユーザー数は0以上で入力してください"
+      },
+      "courses": {
+        "min": "コース数は0以上で入力してください"
+      },
+      "contactEmail": {
+        "invalid": "有効なメールアドレスを入力してください"
       }
     },
     "statusModal": {

@@ -49,8 +49,10 @@
       "tenantId": "Tenant ID",
       "tenantIdPlaceholder": "SKR-001",
       "plan": "Plan",
+      "planPlaceholder": "Select a plan",
       "renewalDate": "Renewal date",
       "status": "Status",
+      "statusPlaceholder": "Select a status",
       "users": "Users",
       "courses": "Courses",
       "primaryContact": "Primary contact",
@@ -69,6 +71,32 @@
         "trial": "Trial",
         "suspended": "Suspended",
         "inactive": "Inactive"
+      }
+    },
+    "formValidation": {
+      "companyName": {
+        "required": "Company name is required"
+      },
+      "tenantId": {
+        "required": "Tenant ID is required"
+      },
+      "plan": {
+        "required": "Plan is required"
+      },
+      "renewalDate": {
+        "required": "Renewal date is required"
+      },
+      "status": {
+        "required": "Status is required"
+      },
+      "users": {
+        "min": "Users must be 0 or greater"
+      },
+      "courses": {
+        "min": "Courses must be 0 or greater"
+      },
+      "contactEmail": {
+        "invalid": "Enter a valid email address"
       }
     },
     "statusModal": {

@@ -1,14 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui";
-import Link from "next/link";
+import { Button, Modal, type TModalRef } from "@/components/ui";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useRef } from "react";
+import TenantFormComponent from "./form/tenant.form.component";
 
 export default function OperatorTenant() {
   const t = useTranslations("operatorTenant");
+  const modalRef = useRef<TModalRef | null>(null);
 
   return (
     <>
+      <Modal modalRef={modalRef} title={t("form.addTitle")}>
+        <TenantFormComponent modalRef={modalRef} />
+      </Modal>
       <div className="flex flex-wrap justify-between items-start gap-3 mb-6">
         <div>
           <h2 className="text-lg font-semibold text-slate-800">{t("title")}</h2>
@@ -19,13 +25,9 @@ export default function OperatorTenant() {
             </a>
           </p>
         </div>
-        <button
-          id="btnAddTenant"
-          type="button"
-          className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
-        >
+        <Button id="btnAddTenant" onClick={() => modalRef.current?.modalOpen()}>
           {t("addTenant")}
-        </button>
+        </Button>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
@@ -94,9 +96,7 @@ export default function OperatorTenant() {
           >
             <option value="all">{t("planFilter.all")}</option>
             <option value="Enterprise">{t("planFilter.enterprise")}</option>
-            <option value="Professional">
-              {t("planFilter.professional")}
-            </option>
+            <option value="Professional">{t("planFilter.professional")}</option>
             <option value="Trial">{t("planFilter.trial")}</option>
           </select>
           <span className="text-xs text-slate-400 ml-auto">
@@ -973,166 +973,7 @@ export default function OperatorTenant() {
           </span>
         </div>
       </div>
-      <div
-        id="tenantFormModal"
-        className="hidden fixed inset-0 z-50 items-center justify-center bg-black/40 p-4"
-      >
-        <div className="bg-white rounded-xl shadow-xl max-w-lg w-full p-6 max-h-[90vh] overflow-y-auto">
-          <h3
-            id="tenantFormTitle"
-            className="font-semibold text-slate-800 mb-4"
-          >
-            {t("form.addTitle")}
-          </h3>
-          <div className="grid sm:grid-cols-2 gap-3 text-sm">
-            <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.companyName")}
-              </label>
-              <input
-                id="tenantFormName"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                placeholder={t("form.companyNamePlaceholder")}
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.japaneseName")}
-              </label>
-              <input
-                id="tenantFormNameJa"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                placeholder={t("form.japaneseNamePlaceholder")}
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.tenantId")}
-              </label>
-              <input
-                id="tenantFormTenantId"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 font-mono"
-                placeholder={t("form.tenantIdPlaceholder")}
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.plan")}
-              </label>
-              <select
-                id="tenantFormPlan"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              >
-                <option value="Enterprise">
-                  {t("form.planOptions.enterprise")}
-                </option>
-                <option value="Professional">
-                  {t("form.planOptions.professional")}
-                </option>
-                <option value="Trial">{t("form.planOptions.trial")}</option>
-              </select>
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.renewalDate")}
-              </label>
-              <input
-                id="tenantFormRenewal"
-                type="date"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.status")}
-              </label>
-              <select
-                id="tenantFormStatus"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              >
-                <option value="active">
-                  {t("form.statusOptions.active")}
-                </option>
-                <option value="trial">{t("form.statusOptions.trial")}</option>
-                <option value="suspended">
-                  {t("form.statusOptions.suspended")}
-                </option>
-                <option value="inactive">
-                  {t("form.statusOptions.inactive")}
-                </option>
-              </select>
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.users")}
-              </label>
-              <input
-                id="tenantFormUsers"
-                type="number"
-                min={0}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                defaultValue={0}
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.courses")}
-              </label>
-              <input
-                id="tenantFormCourses"
-                type="number"
-                min={0}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                defaultValue={0}
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.primaryContact")}
-              </label>
-              <input
-                id="tenantFormContact"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.contactEmail")}
-              </label>
-              <input
-                id="tenantFormEmail"
-                type="email"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-slate-600">
-                {t("form.location")}
-              </label>
-              <input
-                id="tenantFormLocation"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                placeholder={t("form.locationPlaceholder")}
-              />
-            </div>
-          </div>
-          <div className="flex gap-2 justify-end mt-6">
-            <button
-              data-close-modal="tenantFormModal"
-              className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              {t("form.cancel")}
-            </button>
-            <button
-              id="tenantFormSave"
-              type="button"
-              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
-            >
-              {t("form.save")}
-            </button>
-          </div>
-        </div>
-      </div>
+
       <div
         id="tenantStatusModal"
         className="hidden fixed inset-0 z-50 items-center justify-center bg-black/40 p-4"
