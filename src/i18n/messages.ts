@@ -15,8 +15,6 @@ export const messages = {
   ...auth,
   ...layouts,
   ...learnerDashboard,
-  Operator: {
-    ...operatorDashboard.Operator,
-    ...operatorPackages.Operator,
-  },
+  ...operatorDashboard,
+  ...operatorPackages,
 } as const;

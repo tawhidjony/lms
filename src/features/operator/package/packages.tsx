@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 
 export default function OperatorPackages() {
-  const t = useTranslations("Operator.packages");
+  const t = useTranslations("operatorPackages");
 
   return (
     <>

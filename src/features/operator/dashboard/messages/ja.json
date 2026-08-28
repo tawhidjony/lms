@@ -1,15 +1,17 @@
 {
-  "Operator": {
-    "dashboard": {
-      "overview": "Copiaプラットフォーム概要 — テナントと契約の管理",
+  "operatorDashboard": {
+    "title": "Copiaプラットフォーム概要 — テナントと契約の管理",
+    "stats": {
       "totalTenants": "テナント総数",
       "availableTenants": "利用可能テナント",
       "trial": "トライアル",
-      "validContract": "有効契約",
-      "recentTenants": "最近のテナント",
+      "validContract": "有効契約"
+    },
+    "recentTenants": {
+      "title": "最近のテナント",
       "showAll": "すべて表示",
-      "searchPlaceholder": "テーブルを検索...",
-      "showingMeta": "{from}–{to} / 全{total}件を表示",
+      "searchPlaceholder": "テーブルを検索…",
+      "showingMeta": "全{total}件中 {from}–{to}件表示",
       "columns": {
         "tenant": "テナント",
         "plan": "プラン",
@@ -22,12 +24,14 @@
       },
       "previous": "前へ",
       "next": "次へ",
-      "pageOf": "{current} / {total} ページ",
-      "quickAction": "クイックアクション",
+      "pageOf": "ページ {current} / {total}"
+    },
+    "quickAction": {
+      "title": "クイックアクション",
       "tenantManagement": "テナント管理",
       "packageManagement": "パッケージ管理",
       "contractManagement": "契約管理",
-      "quickActionDescription": "Copiaオペレーターは、テナント登録、契約、請求などプラットフォーム上のビジネスを管理します。研修の進捗は各事業者の管理者が監視します。"
+      "description": "Copiaオペレーターはプラットフォーム上の企業を管理します — テナント登録、契約、請求。研修の進捗は各企業の管理者が監視します。"
     }
   }
 }
