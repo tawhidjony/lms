@@ -72,7 +72,7 @@ export default function OperatorPackages() {
           </label>
           <select
             id="packageStatusFilter"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-40"
           >
             <option value="all">{t("statusFilter.all")}</option>
             <option value="active">{t("statusFilter.active")}</option>

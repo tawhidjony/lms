@@ -37,6 +37,14 @@
       "status": "ステータス",
       "actions": "操作"
     },
+    "rowActions": {
+      "edit": "編集",
+      "status": "ステータス",
+      "detail": "詳細"
+    },
+    "list": {
+      "error": "テナントの読み込みに失敗しました"
+    },
     "previous": "前へ",
     "next": "次へ",
     "pageOf": "ページ {current} / {total}",

@@ -82,7 +82,7 @@ export default function OperatorTenant() {
           </label>
           <select
             id="tenantStatusFilter"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-40"
           >
             <option value="all">{t("statusFilter.all")}</option>
             <option value="active">{t("statusFilter.active")}</option>
@@ -92,7 +92,7 @@ export default function OperatorTenant() {
           </select>
           <select
             id="tenantPlanFilter"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-40"
           >
             <option value="all">{t("planFilter.all")}</option>
             <option value="Enterprise">{t("planFilter.enterprise")}</option>
@@ -155,7 +155,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       SC
                     </span>
                     <div>
@@ -212,7 +212,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       MT
                     </span>
                     <div>
@@ -278,7 +278,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       HL
                     </span>
                     <div>
@@ -344,7 +344,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       AH
                     </span>
                     <div>
@@ -410,7 +410,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       FR
                     </span>
                     <div>
@@ -476,7 +476,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       KM
                     </span>
                     <div>
@@ -542,7 +542,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       SF
                     </span>
                     <div>
@@ -608,7 +608,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       TE
                     </span>
                     <div>
@@ -674,7 +674,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition hidden">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       NC
                     </span>
                     <div>
@@ -740,7 +740,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition hidden">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       WM
                     </span>
                     <div>
@@ -806,7 +806,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition hidden">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       GE
                     </span>
                     <div>
@@ -872,7 +872,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition hidden">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       PG
                     </span>
                     <div>

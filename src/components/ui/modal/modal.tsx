@@ -56,6 +56,7 @@ export type ModalProps = {
   children?: ReactNode;
   panelClassName?: string;
   onClose?: () => void;
+  open?: boolean;
 };
 
 export function Modal({
@@ -68,8 +69,9 @@ export function Modal({
   children,
   panelClassName,
   onClose,
+  open = false,
 }: ModalProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(open);
 
   const modalOpen = () => {
     setIsOpen(true);

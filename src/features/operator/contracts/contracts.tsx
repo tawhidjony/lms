@@ -69,7 +69,7 @@ export default function OperatorContracts() {
           </label>
           <select
             id="contractStatusFilter"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-40"
           >
             <option value="all">{t("statusFilter.all")}</option>
             <option value="active">{t("statusFilter.active")}</option>
@@ -79,7 +79,7 @@ export default function OperatorContracts() {
           </select>
           <select
             id="contractPlanFilter"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-40"
           >
             <option value="all">{t("planFilter.all")}</option>
             <option value="Enterprise">{t("planFilter.enterprise")}</option>
@@ -883,7 +883,9 @@ export default function OperatorContracts() {
               {t("next")}
             </button>
           </div>
-          <span className="text-slate-500">{t("pageOf", { current: 1, total: 2 })}</span>
+          <span className="text-slate-500">
+            {t("pageOf", { current: 1, total: 2 })}
+          </span>
         </div>
       </div>
       <div
@@ -915,8 +917,12 @@ export default function OperatorContracts() {
                 id="contractFormPlan"
                 className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
               >
-                <option value="Enterprise">{t("form.planOptions.enterprise")}</option>
-                <option value="Professional">{t("form.planOptions.professional")}</option>
+                <option value="Enterprise">
+                  {t("form.planOptions.enterprise")}
+                </option>
+                <option value="Professional">
+                  {t("form.planOptions.professional")}
+                </option>
                 <option value="Trial">{t("form.planOptions.trial")}</option>
               </select>
             </div>
@@ -930,8 +936,12 @@ export default function OperatorContracts() {
               >
                 <option value="active">{t("form.statusOptions.active")}</option>
                 <option value="trial">{t("form.statusOptions.trial")}</option>
-                <option value="suspended">{t("form.statusOptions.suspended")}</option>
-                <option value="expired">{t("form.statusOptions.expired")}</option>
+                <option value="suspended">
+                  {t("form.statusOptions.suspended")}
+                </option>
+                <option value="expired">
+                  {t("form.statusOptions.expired")}
+                </option>
               </select>
             </div>
             <div>
@@ -989,7 +999,9 @@ export default function OperatorContracts() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-slate-600">{t("form.notes")}</label>
+              <label className="text-xs font-medium text-slate-600">
+                {t("form.notes")}
+              </label>
               <input
                 id="contractFormNote"
                 className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
@@ -1038,10 +1050,18 @@ export default function OperatorContracts() {
             id="contractStatusSelect"
             className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 mb-4"
           >
-            <option value="active">{t("statusModal.statusOptions.active")}</option>
-            <option value="trial">{t("statusModal.statusOptions.trial")}</option>
-            <option value="suspended">{t("statusModal.statusOptions.suspended")}</option>
-            <option value="expired">{t("statusModal.statusOptions.expired")}</option>
+            <option value="active">
+              {t("statusModal.statusOptions.active")}
+            </option>
+            <option value="trial">
+              {t("statusModal.statusOptions.trial")}
+            </option>
+            <option value="suspended">
+              {t("statusModal.statusOptions.suspended")}
+            </option>
+            <option value="expired">
+              {t("statusModal.statusOptions.expired")}
+            </option>
           </select>
           <div className="flex gap-2 justify-end">
             <button

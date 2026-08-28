@@ -37,6 +37,14 @@
       "status": "Status",
       "actions": "Actions"
     },
+    "rowActions": {
+      "edit": "Edit",
+      "status": "Status",
+      "detail": "Detail"
+    },
+    "list": {
+      "error": "Failed to load tenants"
+    },
     "previous": "Previous",
     "next": "Next",
     "pageOf": "Page {current} of {total}",
