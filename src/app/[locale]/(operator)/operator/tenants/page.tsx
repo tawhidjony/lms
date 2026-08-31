@@ -1,5 +1,9 @@
-import OperatorTenant from "@/features/operator/tenant/tenant";
+import TenantListComponent from "@/features/operator/tenant/list/tenant.list.component";
 
 export default function TenantsPage() {
-  return <OperatorTenant />;
+  return (
+    <>
+      <TenantListComponent />
+    </>
+  );
 }

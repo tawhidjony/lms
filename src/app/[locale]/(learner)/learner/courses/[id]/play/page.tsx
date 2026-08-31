@@ -6,5 +6,5 @@ type Props = {
 
 export default async function CoursePlayPage({ params }: Props) {
   const { id } = await params;
-  return <CoursePlayer courseId={id} />;
+  return <CoursePlayer />;
 }

@@ -1,14 +1,16 @@
 {
-  "Operator": {
-    "dashboard": {
-      "overview": "Copia Platform Overview — Managing Tenants and Contracts",
+  "operatorDashboard": {
+    "title": "Copia Platform Overview — Managing Tenants and Contracts",
+    "stats": {
       "totalTenants": "Total number of tenants",
       "availableTenants": "Available tenants",
       "trial": "Trial",
-      "validContract": "Valid contract",
-      "recentTenants": "Recent tenants",
+      "validContract": "Valid contract"
+    },
+    "recentTenants": {
+      "title": "Recent tenants",
       "showAll": "Show all",
-      "searchPlaceholder": "Search the table...",
+      "searchPlaceholder": "Search the table…",
       "showingMeta": "Showing {from}–{to} of {total} total",
       "columns": {
         "tenant": "Tenant",
@@ -22,12 +24,14 @@
       },
       "previous": "Previous",
       "next": "Next",
-      "pageOf": "Page {current} of {total}",
-      "quickAction": "Quick action",
+      "pageOf": "Page {current} of {total}"
+    },
+    "quickAction": {
+      "title": "Quick action",
       "tenantManagement": "Tenant management",
       "packageManagement": "Package management",
       "contractManagement": "Contract management",
-      "quickActionDescription": "Copia operators manage businesses on the platform — tenant registration, contracts, and billing. Training progress is monitored by each business administrator."
+      "description": "Copia operators manage businesses on the platform — tenant registration, contracts, and billing. Training progress is monitored by each business administrator."
     }
   }
 }

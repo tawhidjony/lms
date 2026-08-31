@@ -1,0 +1,74 @@
+---
+description: UI design system, Tailwind tokens, and component conventions
+globs: src/components/**/*,src/features/**/*.tsx,src/app/**/*.css
+alwaysApply: false
+---
+
+# Design System
+
+## Styling
+
+- Tailwind CSS v4 only — global styles in `src/app/[locale]/globals.css`
+- Merge classes with `cn()` from `@/lib/utils`
+- Font: Noto Sans JP via `next/font` (already configured in root layout)
+- No CSS modules, styled-components, or inline `<style>` tags
+
+## Color Palette
+
+| Role | Classes |
+|------|---------|
+| Page background | `bg-slate-50`, gradient via `--background-hero-gradient` |
+| Cards / panels | `bg-white rounded-lg border border-slate-200 shadow-sm` |
+| Primary action | `bg-blue-600 hover:bg-blue-700 text-white` |
+| Body text | `text-slate-900`, `text-slate-800` |
+| Muted text | `text-slate-500`, `text-xs` for labels |
+| Links | `text-blue-600 hover:underline` |
+| Danger | `text-red-500`, `bg-red-600` |
+| Table headers | `bg-slate-50 text-xs font-semibold text-slate-500` |
+
+## UI Primitives (`src/components/ui/`)
+
+Each primitive lives in its own folder:
+
+```
+src/components/ui/{name}/
+  {name}.tsx
+  {name}.test.tsx   # optional, colocated
+  index.ts          # re-exports
+```
+
+Existing primitives: `Button`, `Input`, `Select`, `Switch`, `Textarea`.
+
+### Button API
+
+```tsx
+<Button variant="solid|outline|ghost" color="primary|secondary|danger|neutral"
+        size="sm|md|lg" loading icon iconPosition="left|right">
+```
+
+Always prefer `Button` over raw `<button>` for actions. Use raw buttons only for legacy markup being migrated.
+
+### Input API
+
+Import from `@/components/ui/input` or `@/components/ui`. Supports standard HTML input props + `cn` merging.
+
+## Icons
+
+Use `react-icons` — import per icon: `import { AiOutlineHome } from "react-icons/ai"`.
+
+## Layouts
+
+Role layouts live in `src/components/layouts/{role}_layout/`. They wrap `AppLayout` with translated sidebar config. Do NOT duplicate sidebar markup in features.
+
+## Accessibility
+
+- Form fields: associate labels via `FormLabel` + `id`
+- Buttons: `aria-busy` when loading (Button handles this)
+- Invalid fields: `aria-invalid` (FormInput handles this)
+- Prefer `getByRole` selectors in tests
+
+## Refusals
+
+- Do NOT add shadcn, Radix wrappers, or duplicate existing UI primitives.
+- Do NOT use arbitrary hex colors when Tailwind slate/blue palette applies.
+- Do NOT import `next/link` — use `@/i18n/navigation` Link.

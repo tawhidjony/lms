@@ -17,7 +17,7 @@ function TestForm() {
     <UiForm
       schema={schema}
       onSubmit={(data) => {
-        console.log(data);
+        // console.log(data);
       }}
       defaultValues={{ name: "" }}
     >

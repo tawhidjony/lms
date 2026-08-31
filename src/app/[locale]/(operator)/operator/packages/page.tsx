@@ -1,5 +1,5 @@
-import OperatorPackages from "@/features/operator/package/packages";
+import PackageListComponent from "@/features/operator/package/list/package.list.component";
 
 export default function PackagesPage() {
-  return <OperatorPackages />;
+  return <PackageListComponent />;
 }

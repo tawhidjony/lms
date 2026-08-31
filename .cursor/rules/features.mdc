@@ -1,0 +1,67 @@
+---
+description: Feature module structure for auth, operator, learner, and other roles
+globs: src/features/**/*
+alwaysApply: false
+---
+
+# Feature Modules
+
+## App Page Wiring
+
+Pages under `src/app/[locale]/({role})/` MUST only import the feature default export:
+
+```tsx
+import OperatorDashboard from "@/features/operator/dashboard/dashboard";
+
+export default function OperatorDashboardPage() {
+  return <OperatorDashboard />;
+}
+```
+
+## Auth Features (strict split)
+
+Every auth flow `{flow}` (e.g. `login`) uses this structure:
+
+```
+src/features/auth/{flow}/
+  component/{flow}.component.tsx   # logic, UiForm, default export
+  component/{flow}.view.tsx        # presentational UI + useTranslations
+  schema/{flow}.schema.ts          # create{Flow}Schema(messages)
+  type/{flow}.type.ts              # {flow}DefaultValues
+  messages/en.json
+  messages/ja.json
+```
+
+- NO barrel `index.ts` under auth features.
+- App pages import `@/features/auth/{flow}/component/{flow}.component` only.
+- View is imported ONLY by its sibling component (relative `./{flow}.view`).
+
+## Non-Auth Features (operator, learner, etc.)
+
+```
+src/features/{role}/{name}/
+  {name}.tsx              # default export, "use client" when interactive
+  messages/en.json
+  messages/ja.json
+```
+
+- Single feature file is acceptable for dashboards and CRUD screens.
+- Colocate `messages/` in the same folder.
+- Use `useTranslations` (client) or `getTranslations` (server) with the feature namespace.
+
+## Message Namespace Conventions
+
+| Area | JSON root key | Hook namespace |
+|------|---------------|----------------|
+| Auth | `Auth.{flow}` | `Auth.{flow}` |
+| Operator | `operator{Name}` camelCase | `operatorDashboard`, `operatorTenant`, … |
+| Learner | `Learner.{page}` | `Learner.dashboard`, … |
+| Layouts | `layouts.{layout}` | `layouts.operatorLayout.sidebar` |
+
+## New Feature Checklist
+
+1. Create feature file(s) under `src/features/{role}/{name}/`.
+2. Add `messages/en.json` + `messages/ja.json`.
+3. Register in `src/i18n/message-registry.ts` AND `src/i18n/messages.ts`.
+4. Create thin app page under the correct route group.
+5. Never hardcode UI strings — see the translate rule.

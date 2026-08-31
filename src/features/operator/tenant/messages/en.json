@@ -1,0 +1,125 @@
+{
+  "operatorTenant": {
+    "title": "Tenant management",
+    "description": "Manage companies on the Copia LMS platform ·",
+    "viewPackages": "View subscription packages",
+    "addTenant": "+ Add tenant",
+    "stats": {
+      "total": "Total tenants",
+      "active": "Active",
+      "trial": "Trial",
+      "suspended": "Suspended / Inactive"
+    },
+    "filter": "Filter:",
+    "statusFilter": {
+      "all": "All statuses",
+      "active": "Active",
+      "trial": "Trial",
+      "suspended": "Suspended",
+      "inactive": "Inactive"
+    },
+    "planFilter": {
+      "all": "All plans",
+      "enterprise": "Enterprise",
+      "professional": "Professional",
+      "trial": "Trial"
+    },
+    "searchHint": "Search by name or ID in the table below",
+    "searchPlaceholder": "Search the table…",
+    "showingMeta": "Showing {from}–{to} of {total} total",
+    "columns": {
+      "company": "Company",
+      "tenantId": "Tenant ID",
+      "users": "Users",
+      "courses": "Courses",
+      "plan": "Plan",
+      "expiry": "Expiry date",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "rowActions": {
+      "edit": "Edit",
+      "status": "Status",
+      "detail": "Detail"
+    },
+    "list": {
+      "error": "Failed to load tenants"
+    },
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {current} of {total}",
+    "form": {
+      "addTitle": "Add tenant",
+      "editTitle": "Edit tenant",
+      "companyName": "Company name",
+      "companyNamePlaceholder": "Sakura Corporation",
+      "japaneseName": "Japanese name",
+      "japaneseNamePlaceholder": "株式会社サクラ",
+      "tenantId": "Tenant ID",
+      "tenantIdPlaceholder": "SKR-001",
+      "plan": "Plan",
+      "planPlaceholder": "Select a plan",
+      "renewalDate": "Renewal date",
+      "status": "Status",
+      "statusPlaceholder": "Select a status",
+      "users": "Users",
+      "courses": "Courses",
+      "primaryContact": "Primary contact",
+      "contactEmail": "Contact email",
+      "location": "Location",
+      "locationPlaceholder": "Tokyo",
+      "cancel": "Cancel",
+      "save": "Save tenant",
+      "planOptions": {
+        "enterprise": "Enterprise",
+        "professional": "Professional",
+        "trial": "Trial"
+      },
+      "statusOptions": {
+        "active": "Active",
+        "trial": "Trial",
+        "suspended": "Suspended",
+        "inactive": "Inactive"
+      }
+    },
+    "formValidation": {
+      "companyName": {
+        "required": "Company name is required"
+      },
+      "tenantId": {
+        "required": "Tenant ID is required"
+      },
+      "plan": {
+        "required": "Plan is required"
+      },
+      "renewalDate": {
+        "required": "Renewal date is required"
+      },
+      "status": {
+        "required": "Status is required"
+      },
+      "users": {
+        "min": "Users must be 0 or greater"
+      },
+      "courses": {
+        "min": "Courses must be 0 or greater"
+      },
+      "contactEmail": {
+        "invalid": "Enter a valid email address"
+      }
+    },
+    "statusModal": {
+      "title": "Change tenant status",
+      "current": "Current:",
+      "newStatus": "New status",
+      "cancel": "Cancel",
+      "update": "Update status",
+      "statusOptions": {
+        "active": "Active — Full access",
+        "trial": "Trial — Limited period",
+        "suspended": "Suspended — Restricted access",
+        "inactive": "Inactive — Contract ended"
+      }
+    }
+  }
+}

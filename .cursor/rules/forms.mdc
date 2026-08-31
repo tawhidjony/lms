@@ -1,0 +1,62 @@
+---
+description: Form, validation, and Zod schema conventions
+globs: src/components/form/**/*,src/features/**/schema/**,src/features/**/*.{tsx,ts}
+alwaysApply: false
+---
+
+# Forms & Validation
+
+## UiForm Pattern
+
+All forms use `UiForm` from `@/components/form` with `react-hook-form` + `zod`:
+
+```tsx
+<UiForm<TInput, TOutput>
+  schema={schema}
+  defaultValues={defaultValues}
+  onSubmit={onSubmit}
+  ref={formRef}
+>
+  <FeatureView />
+</UiForm>
+```
+
+## Field Components
+
+Use ONLY these wrappers inside forms — never raw `<input>` for form fields:
+
+- `FormInput` — `@/components/form/fields/form-input`
+- `FormSelect` — `@/components/form/fields/form-select`
+- `FormTextarea` — `@/components/form/fields/form-textarea`
+
+Pass the schema input type: `FormInput<TLoginSchemaInput name="email" … />`.
+
+## Schema Factory Pattern
+
+```ts
+export const createLoginSchema = (messages: Messages) =>
+  z.object({
+    email: z.email(messages.Auth.loginValidation.email.required),
+    password: z.string().min(8, messages.Auth.loginValidation.password.min),
+  });
+
+export type TLoginSchema = ReturnType<typeof createLoginSchema>;
+export type TLoginSchemaInput = z.input<TLoginSchema>;
+export type TLoginSchemaOutput = z.output<TLoginSchema>;
+```
+
+- Schema file: `schema/{name}.schema.ts`
+- Default values: `type/{name}.type.ts` exporting `{name}DefaultValues`
+- Component builds schema: `create{Name}Schema(useMessages())`
+- Validation messages come from i18n — never hardcode error strings.
+
+## Buttons in Forms
+
+Use `Button` from `@/components/ui` with `type="submit"` for form submission.
+Use `loading` prop for async submit states.
+
+## Refusals
+
+- Do NOT use `@hookform/resolvers` directly in features — `UiForm` handles it.
+- Do NOT use `yup`, `joi`, or other validators.
+- Do NOT skip `TInput`/`TOutput` generic types on `UiForm`.

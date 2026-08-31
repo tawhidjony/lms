@@ -1,33 +1,35 @@
-import { getTranslations } from "next-intl/server";
+"use client";
 
-export default async function OperatorDashboard() {
-  const t = await getTranslations("Operator.dashboard");
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
+export default function OperatorDashboard() {
+  const t = useTranslations("operatorDashboard");
   return (
     <>
-      <p className="text-sm text-slate-500 mb-6">{t("overview")}</p>
+      <p className="text-sm text-slate-500 mb-6">{t("title")}</p>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            {t("totalTenants")}
+            {t("stats.totalTenants")}
           </div>
           <div className="text-2xl font-bold text-slate-900">12</div>
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            {t("availableTenants")}
+            {t("stats.availableTenants")}
           </div>
           <div className="text-2xl font-bold text-slate-900">10</div>
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            {t("trial")}
+            {t("stats.trial")}
           </div>
           <div className="text-2xl font-bold text-slate-900">2</div>
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            {t("validContract")}
+            {t("stats.validContract")}
           </div>
           <div className="text-2xl font-bold text-slate-900">9</div>
         </div>
@@ -36,24 +38,24 @@ export default async function OperatorDashboard() {
         <div className="lg:col-span-2 bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-sm font-semibold text-slate-800">
-              {t("recentTenants")}
+              {t("recentTenants.title")}
             </h2>
             <a
               href="tenants.html"
               className="text-xs text-blue-600 hover:underline"
             >
-              {t("showAll")}
+              {t("recentTenants.showAll")}
             </a>
           </div>
           <div className="overflow-hidden copia-table-wrap">
             <div className="copia-table-toolbar flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b border-slate-100 bg-white">
               <input
                 type="search"
-                placeholder={t("searchPlaceholder")}
+                placeholder={t("recentTenants.searchPlaceholder")}
                 className="copia-table-search w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:max-w-xs"
               />
               <span className="copia-table-meta text-xs text-slate-500 sm:ml-auto">
-                {t("showingMeta", { from: 1, to: 5, total: 5 })}
+                {t("recentTenants.showingMeta", { from: 1, to: 5, total: 5 })}
               </span>
             </div>
             <div className="overflow-x-auto">
@@ -67,16 +69,16 @@ export default async function OperatorDashboard() {
                 <thead>
                   <tr>
                     <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                      {t("columns.tenant")}
+                      {t("recentTenants.columns.tenant")}
                     </th>
                     <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                      {t("columns.plan")}
+                      {t("recentTenants.columns.plan")}
                     </th>
                     <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                      {t("columns.expiryDate")}
+                      {t("recentTenants.columns.expiryDate")}
                     </th>
                     <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                      {t("columns.status")}
+                      {t("recentTenants.columns.status")}
                     </th>
                   </tr>
                 </thead>
@@ -93,7 +95,7 @@ export default async function OperatorDashboard() {
                     </td>
                     <td className="px-3 py-2 border-b border-slate-100">
                       <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700">
-                        {t("status.valid")}
+                        {t("recentTenants.status.valid")}
                       </span>
                     </td>
                   </tr>
@@ -109,7 +111,7 @@ export default async function OperatorDashboard() {
                     </td>
                     <td className="px-3 py-2 border-b border-slate-100">
                       <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700">
-                        {t("status.valid")}
+                        {t("recentTenants.status.valid")}
                       </span>
                     </td>
                   </tr>
@@ -125,7 +127,7 @@ export default async function OperatorDashboard() {
                     </td>
                     <td className="px-3 py-2 border-b border-slate-100">
                       <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700">
-                        {t("status.valid")}
+                        {t("recentTenants.status.valid")}
                       </span>
                     </td>
                   </tr>
@@ -141,7 +143,7 @@ export default async function OperatorDashboard() {
                     </td>
                     <td className="px-3 py-2 border-b border-slate-100">
                       <span className="inline-flex items-center rounded-full border border-green-200 bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700">
-                        {t("status.valid")}
+                        {t("recentTenants.status.valid")}
                       </span>
                     </td>
                   </tr>
@@ -157,7 +159,7 @@ export default async function OperatorDashboard() {
                     </td>
                     <td className="px-3 py-2 border-b border-slate-100">
                       <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700">
-                        {t("status.trial")}
+                        {t("recentTenants.status.trial")}
                       </span>
                     </td>
                   </tr>
@@ -171,7 +173,7 @@ export default async function OperatorDashboard() {
                   className="copia-table-page-btn inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 "
                   disabled
                 >
-                  {t("previous")}
+                  {t("recentTenants.previous")}
                 </button>
                 <div className="flex flex-wrap items-center gap-1" />
                 <button
@@ -179,41 +181,41 @@ export default async function OperatorDashboard() {
                   className="copia-table-page-btn inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 "
                   disabled
                 >
-                  {t("next")}
+                  {t("recentTenants.next")}
                 </button>
               </div>
               <span className="text-slate-500">
-                {t("pageOf", { current: 1, total: 1 })}
+                {t("recentTenants.pageOf", { current: 1, total: 1 })}
               </span>
             </div>
           </div>
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <h2 className="text-sm font-semibold text-slate-800 mb-4">
-            {t("quickAction")}
+            {t("quickAction.title")}
           </h2>
           <div className="space-y-2">
-            <a
-              href="tenants.html"
+            <Link
+              href="/operator/tenants"
               className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 w-full text-center"
             >
-              {t("tenantManagement")}
-            </a>
-            <a
-              href="packages.html"
+              {t("quickAction.tenantManagement")}
+            </Link>
+            <Link
+              href="/operator/packages"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 w-full text-center"
             >
-              {t("packageManagement")}
-            </a>
-            <a
-              href="contracts.html"
+              {t("quickAction.packageManagement")}
+            </Link>
+            <Link
+              href="/operator/contracts"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 w-full text-center"
             >
-              {t("contractManagement")}
-            </a>
+              {t("quickAction.contractManagement")}
+            </Link>
           </div>
           <p className="text-xs text-slate-500 mt-4 pt-4 border-t border-slate-100">
-            {t("quickActionDescription")}
+            {t("quickAction.description")}
           </p>
         </div>
       </div>

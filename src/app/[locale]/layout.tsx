@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { Noto_Sans_JP } from "next/font/google";
+import { Providers } from "../providers";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -26,7 +27,7 @@ export default async function RootLayout({
     <html lang={locale} className={`${notoSansJP.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
     </html>

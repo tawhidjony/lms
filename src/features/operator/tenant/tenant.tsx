@@ -1,31 +1,38 @@
-import { Button } from "@/components/ui";
+"use client";
+
+import { Button, Modal, type TModalRef } from "@/components/ui";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useRef } from "react";
+import TenantFormComponent from "./form/tenant.form.component";
 
 export default function OperatorTenant() {
+  const t = useTranslations("operatorTenant");
+  const modalRef = useRef<TModalRef | null>(null);
+
   return (
     <>
+      <Modal modalRef={modalRef} title={t("form.addTitle")}>
+        <TenantFormComponent modalRef={modalRef} />
+      </Modal>
       <div className="flex flex-wrap justify-between items-start gap-3 mb-6">
         <div>
-          <h2 className="text-lg font-semibold text-slate-800">テナント管理</h2>
+          <h2 className="text-lg font-semibold text-slate-800">{t("title")}</h2>
           <p className="text-sm text-slate-500">
-            Copia LMSプラットフォーム上の企業を管理 ·{" "}
+            {t("description")}{" "}
             <a href="packages.html" className="text-blue-600 hover:underline">
-              サブスクリプションパッケージを見る
+              {t("viewPackages")}
             </a>
           </p>
         </div>
-        <button
-          id="btnAddTenant"
-          type="button"
-          className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
-        >
-          + テナントを追加
-        </button>
+        <Button id="btnAddTenant" onClick={() => modalRef.current?.modalOpen()}>
+          {t("addTenant")}
+        </Button>
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            テナント総数
+            {t("stats.total")}
           </div>
           <div
             className="text-2xl font-bold text-slate-900"
@@ -35,7 +42,9 @@ export default function OperatorTenant() {
           </div>
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
-          <div className="text-xs font-medium text-slate-500 mb-1">有効</div>
+          <div className="text-xs font-medium text-slate-500 mb-1">
+            {t("stats.active")}
+          </div>
           <div
             className="text-2xl font-bold text-slate-900"
             id="tenantStatActive"
@@ -45,7 +54,7 @@ export default function OperatorTenant() {
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            トライアル
+            {t("stats.trial")}
           </div>
           <div
             className="text-2xl font-bold text-slate-900"
@@ -56,7 +65,7 @@ export default function OperatorTenant() {
         </div>
         <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm">
           <div className="text-xs font-medium text-slate-500 mb-1">
-            停止 / 無効
+            {t("stats.suspended")}
           </div>
           <div
             className="text-2xl font-bold text-slate-900"
@@ -69,29 +78,29 @@ export default function OperatorTenant() {
       <div className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm mb-4">
         <div className="flex flex-wrap gap-3 items-center">
           <label className="text-xs font-medium text-slate-600 shrink-0">
-            フィルター:
+            {t("filter")}
           </label>
           <select
             id="tenantStatusFilter"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-40"
           >
-            <option value="all">すべてのステータス</option>
-            <option value="active">有効</option>
-            <option value="trial">トライアル</option>
-            <option value="suspended">停止</option>
-            <option value="inactive">無効</option>
+            <option value="all">{t("statusFilter.all")}</option>
+            <option value="active">{t("statusFilter.active")}</option>
+            <option value="trial">{t("statusFilter.trial")}</option>
+            <option value="suspended">{t("statusFilter.suspended")}</option>
+            <option value="inactive">{t("statusFilter.inactive")}</option>
           </select>
           <select
             id="tenantPlanFilter"
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-[160px]"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 max-w-40"
           >
-            <option value="all">すべてのプラン</option>
-            <option value="Enterprise">エンタープライズ</option>
-            <option value="Professional">プロフェッショナル</option>
-            <option value="Trial">トライアル</option>
+            <option value="all">{t("planFilter.all")}</option>
+            <option value="Enterprise">{t("planFilter.enterprise")}</option>
+            <option value="Professional">{t("planFilter.professional")}</option>
+            <option value="Trial">{t("planFilter.trial")}</option>
           </select>
           <span className="text-xs text-slate-400 ml-auto">
-            下のテーブル検索で名前やIDを検索
+            {t("searchHint")}
           </span>
         </div>
       </div>
@@ -99,11 +108,11 @@ export default function OperatorTenant() {
         <div className="copia-table-toolbar flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b border-slate-100 bg-white">
           <input
             type="search"
-            placeholder="テーブルを検索…"
+            placeholder={t("searchPlaceholder")}
             className="copia-table-search w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:max-w-xs"
           />
           <span className="copia-table-meta text-xs text-slate-500 sm:ml-auto">
-            全12件中 1–8件表示
+            {t("showingMeta", { from: 1, to: 8, total: 12 })}
           </span>
         </div>
         <div className="overflow-x-auto">
@@ -117,28 +126,28 @@ export default function OperatorTenant() {
             <thead>
               <tr>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  会社
+                  {t("columns.company")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  テナントID
+                  {t("columns.tenantId")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  ユーザー
+                  {t("columns.users")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  コース
+                  {t("columns.courses")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  プラン
+                  {t("columns.plan")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  有効期限
+                  {t("columns.expiry")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  ステータス
+                  {t("columns.status")}
                 </th>
                 <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
-                  操作
+                  {t("columns.actions")}
                 </th>
               </tr>
             </thead>
@@ -146,7 +155,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       SC
                     </span>
                     <div>
@@ -203,7 +212,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       MT
                     </span>
                     <div>
@@ -269,7 +278,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       HL
                     </span>
                     <div>
@@ -335,7 +344,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       AH
                     </span>
                     <div>
@@ -401,7 +410,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       FR
                     </span>
                     <div>
@@ -467,7 +476,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       KM
                     </span>
                     <div>
@@ -533,7 +542,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       SF
                     </span>
                     <div>
@@ -599,7 +608,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       TE
                     </span>
                     <div>
@@ -665,7 +674,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition hidden">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       NC
                     </span>
                     <div>
@@ -731,7 +740,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition hidden">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       WM
                     </span>
                     <div>
@@ -797,7 +806,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition hidden">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       GE
                     </span>
                     <div>
@@ -863,7 +872,7 @@ export default function OperatorTenant() {
               <tr className="hover:bg-slate-50/60 transition hidden">
                 <td className="px-4 py-3 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-linear-to-br from-blue-500 to-blue-700 text-white text-xs font-bold flex items-center justify-center shrink-0">
                       PG
                     </span>
                     <div>
@@ -936,7 +945,7 @@ export default function OperatorTenant() {
               className="copia-table-page-btn inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 "
               disabled
             >
-              前へ
+              {t("previous")}
             </button>
             <div className="flex flex-wrap items-center gap-1">
               <button
@@ -956,169 +965,22 @@ export default function OperatorTenant() {
               type="button"
               className="copia-table-page-btn inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 "
             >
-              次へ
+              {t("next")}
             </button>
           </div>
-          <span className="text-slate-500">ページ 1 / 2</span>
+          <span className="text-slate-500">
+            {t("pageOf", { current: 1, total: 2 })}
+          </span>
         </div>
       </div>
-      <div
-        id="tenantFormModal"
-        className="hidden fixed inset-0 z-50 items-center justify-center bg-black/40 p-4"
-      >
-        <div className="bg-white rounded-xl shadow-xl max-w-lg w-full p-6 max-h-[90vh] overflow-y-auto">
-          <h3
-            id="tenantFormTitle"
-            className="font-semibold text-slate-800 mb-4"
-          >
-            テナントを追加
-          </h3>
-          <div className="grid sm:grid-cols-2 gap-3 text-sm">
-            <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-slate-600">
-                会社名
-              </label>
-              <input
-                id="tenantFormName"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                placeholder="Sakura Corporation"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-slate-600">
-                日本語名
-              </label>
-              <input
-                id="tenantFormNameJa"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                placeholder="株式会社サクラ"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                テナントID
-              </label>
-              <input
-                id="tenantFormTenantId"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 font-mono"
-                placeholder="SKR-001"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                プラン
-              </label>
-              <select
-                id="tenantFormPlan"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              >
-                <option value="Enterprise">エンタープライズ</option>
-                <option value="Professional">プロフェッショナル</option>
-                <option value="Trial">トライアル</option>
-              </select>
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                更新日
-              </label>
-              <input
-                id="tenantFormRenewal"
-                type="date"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                ステータス
-              </label>
-              <select
-                id="tenantFormStatus"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              >
-                <option value="active">有効</option>
-                <option value="trial">トライアル</option>
-                <option value="suspended">停止</option>
-                <option value="inactive">無効</option>
-              </select>
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                ユーザー
-              </label>
-              <input
-                id="tenantFormUsers"
-                type="number"
-                min={0}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                defaultValue={0}
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                コース
-              </label>
-              <input
-                id="tenantFormCourses"
-                type="number"
-                min={0}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                defaultValue={0}
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                主担当者
-              </label>
-              <input
-                id="tenantFormContact"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-medium text-slate-600">
-                連絡先メール
-              </label>
-              <input
-                id="tenantFormEmail"
-                type="email"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-xs font-medium text-slate-600">
-                所在地
-              </label>
-              <input
-                id="tenantFormLocation"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1"
-                placeholder="東京"
-              />
-            </div>
-          </div>
-          <div className="flex gap-2 justify-end mt-6">
-            <button
-              data-close-modal="tenantFormModal"
-              className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-            >
-              キャンセル
-            </button>
-            <button
-              id="tenantFormSave"
-              type="button"
-              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
-            >
-              テナントを保存
-            </button>
-          </div>
-        </div>
-      </div>
+
       <div
         id="tenantStatusModal"
         className="hidden fixed inset-0 z-50 items-center justify-center bg-black/40 p-4"
       >
         <div className="bg-white rounded-xl shadow-xl max-w-sm w-full p-6">
           <h3 className="font-semibold text-slate-800 mb-2">
-            テナントステータスの変更
+            {t("statusModal.title")}
           </h3>
           <p className="text-sm text-slate-600 mb-1">
             <span
@@ -1127,33 +989,41 @@ export default function OperatorTenant() {
             />
           </p>
           <p className="text-xs text-slate-500 mb-4">
-            現在: <span id="statusCurrentBadge" />
+            {t("statusModal.current")} <span id="statusCurrentBadge" />
           </p>
           <label className="text-xs font-medium text-slate-600">
-            新しいステータス
+            {t("statusModal.newStatus")}
           </label>
           <select
             id="statusNewSelect"
             className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 mb-4"
           >
-            <option value="active">有効 — フルアクセス</option>
-            <option value="trial">トライアル — 期間限定</option>
-            <option value="suspended">停止 — アクセス制限</option>
-            <option value="inactive">無効 — 契約終了</option>
+            <option value="active">
+              {t("statusModal.statusOptions.active")}
+            </option>
+            <option value="trial">
+              {t("statusModal.statusOptions.trial")}
+            </option>
+            <option value="suspended">
+              {t("statusModal.statusOptions.suspended")}
+            </option>
+            <option value="inactive">
+              {t("statusModal.statusOptions.inactive")}
+            </option>
           </select>
           <div className="flex gap-2 justify-end">
             <button
               data-close-modal="tenantStatusModal"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
-              キャンセル
+              {t("statusModal.cancel")}
             </button>
             <button
               id="tenantStatusSave"
               type="button"
               className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
             >
-              ステータス更新
+              {t("statusModal.update")}
             </button>
           </div>
         </div>

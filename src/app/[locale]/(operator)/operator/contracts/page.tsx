@@ -1,5 +1,5 @@
-import OperatorContracts from "@/features/operator/contracts/contracts";
+import ContractListComponent from "@/features/operator/contracts/list/contract.list.component";
 
 export default function ContractsPage() {
-  return <OperatorContracts />;
+  return <ContractListComponent />;
 }

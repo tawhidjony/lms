@@ -1,0 +1,130 @@
+{
+  "operatorContracts": {
+    "title": "契約管理",
+    "description": "テナント全体のサブスクリプション、シート割当、請求",
+    "exportCsv": "CSV出力",
+    "exportCsvDemo": "CSVを出力しました",
+    "addContract": "+ 契約を追加",
+    "stats": {
+      "activeContracts": "有効契約",
+      "monthlyRevenue": "月次売上",
+      "seatOverage": "シート超過"
+    },
+    "filter": "フィルター:",
+    "statusFilter": {
+      "all": "すべてのステータス",
+      "valid": "有効",
+      "trial": "トライアル",
+      "suspended": "停止",
+      "expired": "期限切れ"
+    },
+    "planFilter": {
+      "all": "すべてのプラン",
+      "enterprise": "エンタープライズ",
+      "professional": "プロフェッショナル",
+      "trial": "トライアル"
+    },
+    "searchHint": "テーブル検索でテナント名を検索",
+    "searchPlaceholder": "テーブルを検索…",
+    "showingMeta": "全{total}件中 {from}–{to}件表示",
+    "columns": {
+      "tenant": "テナント",
+      "plan": "プラン",
+      "seats": "シート",
+      "used": "使用",
+      "start": "開始",
+      "renewal": "更新",
+      "monthly": "月額",
+      "status": "ステータス",
+      "actions": "操作"
+    },
+    "rowActions": {
+      "edit": "編集",
+      "status": "ステータス",
+      "tenant": "テナント"
+    },
+    "list": {
+      "error": "契約の読み込みに失敗しました"
+    },
+    "previous": "前へ",
+    "next": "次へ",
+    "pageOf": "ページ {current} / {total}",
+    "statusLabels": {
+      "valid": "有効",
+      "trial": "トライアル",
+      "suspended": "停止",
+      "expired": "期限切れ"
+    },
+    "form": {
+      "addTitle": "契約を追加",
+      "editTitle": "契約を編集",
+      "tenant": "テナント",
+      "tenantPlaceholder": "テナントを選択",
+      "plan": "プラン",
+      "planPlaceholder": "プランを選択",
+      "status": "ステータス",
+      "statusPlaceholder": "ステータスを選択",
+      "seatAllocation": "シート割当",
+      "usedSeats": "使用シート",
+      "startDate": "開始日",
+      "renewalDate": "更新日",
+      "monthlyFee": "月額料金",
+      "currency": "通貨",
+      "cancel": "キャンセル",
+      "save": "契約を保存",
+      "planOptions": {
+        "enterprise": "エンタープライズ",
+        "professional": "プロフェッショナル",
+        "trial": "トライアル"
+      },
+      "statusOptions": {
+        "valid": "有効",
+        "trial": "トライアル",
+        "suspended": "停止",
+        "expired": "期限切れ"
+      }
+    },
+    "formValidation": {
+      "tenantId": {
+        "required": "テナントは必須です"
+      },
+      "plan": {
+        "required": "プランは必須です"
+      },
+      "status": {
+        "required": "ステータスは必須です"
+      },
+      "maxUsers": {
+        "min": "シート割当は1以上である必要があります"
+      },
+      "activeUsers": {
+        "min": "使用シートは0以上である必要があります"
+      },
+      "contractStart": {
+        "required": "開始日は必須です"
+      },
+      "contractEnd": {
+        "required": "更新日は必須です"
+      },
+      "amount": {
+        "min": "金額は0以上である必要があります"
+      },
+      "currency": {
+        "required": "通貨は必須です"
+      }
+    },
+    "statusModal": {
+      "title": "契約ステータスの変更",
+      "current": "現在:",
+      "newStatus": "新しいステータス",
+      "cancel": "キャンセル",
+      "update": "ステータス更新",
+      "statusOptions": {
+        "valid": "有効 — 請求中",
+        "trial": "トライアル — 月額なし",
+        "suspended": "停止 — 支払い問題",
+        "expired": "期限切れ — 契約終了"
+      }
+    }
+  }
+}
