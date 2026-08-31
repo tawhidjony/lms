@@ -1,11 +1,12 @@
+"use client";
 import { SidebarItemType } from "@/components/layouts/types";
 import { usePathname } from "next/navigation";
 
-export default function Breadcrumb({
-  breadcrumb,
-}: {
+export type BreadcrumbProps = {
   breadcrumb: ReadonlyArray<SidebarItemType>;
-}) {
+};
+
+export function Breadcrumb({ breadcrumb }: BreadcrumbProps) {
   const pathname = usePathname();
   const breadcrumbItems = breadcrumb.filter(
     (item) => (item.href ?? "") === pathname,

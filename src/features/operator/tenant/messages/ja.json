@@ -50,6 +50,7 @@
     "pageOf": "ページ {current} / {total}",
     "form": {
       "addTitle": "テナントを追加",
+      "editTitle": "テナントを編集",
       "companyName": "会社名",
       "companyNamePlaceholder": "Sakura Corporation",
       "japaneseName": "日本語名",

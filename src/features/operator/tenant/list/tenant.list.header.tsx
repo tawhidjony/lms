@@ -1,5 +1,6 @@
 "use client";
 import { Button, Modal, TModalRef } from "@/components/ui";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import TenantFormComponent from "../form/tenant.form.component";
@@ -17,9 +18,12 @@ export default function TenantListHeader() {
           <h2 className="text-lg font-semibold text-slate-800">{t("title")}</h2>
           <p className="text-sm text-slate-500">
             {t("description")}{" "}
-            <a href="packages.html" className="text-blue-600 hover:underline">
+            <Link
+              href="/operator/packages"
+              className="text-blue-600 hover:underline hover:text-blue-700"
+            >
               {t("viewPackages")}
-            </a>
+            </Link>
           </p>
         </div>
         <Button id="btnAddTenant" onClick={() => modalRef.current?.modalOpen()}>

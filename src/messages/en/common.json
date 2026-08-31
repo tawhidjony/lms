@@ -4,6 +4,8 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
+    "status": "Status",
+    "detail": "Detailed",
     "loading": "Loading",
     "retry": "Retry"
   }

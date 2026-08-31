@@ -1,6 +1,10 @@
+export * from "./badge";
+export * from "./breadcrumb";
 export * from "./button";
+export { ButtonLink, type ButtonLinkProps } from "./button-link";
 export * from "./input";
 export * from "./modal";
 export * from "./select";
 export * from "./switch";
+export * from "./table";
 export * from "./textarea";

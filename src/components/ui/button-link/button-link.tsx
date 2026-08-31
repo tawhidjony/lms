@@ -1,20 +1,23 @@
 import * as React from "react";
 
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
-// Define color and variant types
 type ButtonVariant = "solid" | "outline" | "ghost";
 type ButtonColor = "primary" | "secondary" | "danger" | "neutral";
-
 type ButtonSize = "sm" | "md" | "lg";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type LinkProps = React.ComponentProps<typeof Link>;
+
+export interface ButtonLinkProps extends Omit<LinkProps, "className"> {
   variant?: ButtonVariant;
   color?: ButtonColor;
   size?: ButtonSize;
   loading?: boolean;
+  disabled?: boolean;
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
+  className?: string;
 }
 
 const baseColorClasses: Record<
@@ -24,7 +27,7 @@ const baseColorClasses: Record<
   primary: {
     solid: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",
     outline:
-      "bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-300 focus:ring-blue-500",
+      "bg-transparent text-blue-700 hover:bg-blue-50 border border-blue-500 focus:ring-blue-500",
     ghost: "bg-transparent text-blue-700 hover:bg-blue-50 focus:ring-blue-500",
   },
   secondary: {
@@ -53,37 +56,46 @@ const sizeClasses: Record<ButtonSize, string> = {
   lg: "h-11 px-6 text-base",
 };
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   (
     {
       className,
       variant = "solid",
       color = "primary",
-      size = "md",
+      size = "sm",
       loading = false,
       disabled,
       children,
-      type = "button",
       icon,
       iconPosition = "left",
+      onClick,
       ...props
     },
     ref,
   ) => {
     const isDisabled = disabled || loading;
-    const renderIcon = icon && !loading; // Don't show user icon if loading spinner is showing
+    const renderIcon = icon && !loading;
+
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (isDisabled) {
+        event.preventDefault();
+        return;
+      }
+      onClick?.(event);
+    };
 
     return (
-      <button
+      <Link
         ref={ref}
-        type={type}
-        disabled={isDisabled}
+        aria-disabled={isDisabled || undefined}
         aria-busy={loading || undefined}
+        tabIndex={isDisabled ? -1 : undefined}
+        onClick={handleClick}
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-md font-medium cursor-pointer",
+          "inline-flex items-center justify-center gap-2 rounded-md font-medium cursor-pointer  ",
           "outline-none transition-colors",
           "focus:ring-0 focus:ring-offset-0",
-          "disabled:cursor-not-allowed disabled:opacity-60",
+          isDisabled && "pointer-events-none cursor-not-allowed opacity-60",
           baseColorClasses[color][variant],
           sizeClasses[size],
           className,
@@ -103,11 +115,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {renderIcon && iconPosition === "right" && (
           <span className="inline-flex items-center">{icon}</span>
         )}
-      </button>
+      </Link>
     );
   },
 );
 
-Button.displayName = "Button";
+ButtonLink.displayName = "ButtonLink";
 
-export { Button, type ButtonColor, type ButtonSize, type ButtonVariant };
+export { ButtonLink };

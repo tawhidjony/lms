@@ -1,115 +1,147 @@
 "use client";
 
-import { Button, Modal, TModalRef } from "@/components/ui";
+import { Badge, Button, ButtonLink, Modal, TModalRef } from "@/components/ui";
 import { tableFeaturesType } from "@/components/UiTable/table";
 import { Link } from "@/i18n/navigation";
-import { cn } from "@/lib/utils";
 import { createColumnHelper } from "@tanstack/react-table";
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import { Tenant } from "../types/tenant.types";
 
-// Translator and translation removed
-
-const badgeClassName =
-  "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium";
-
-function getPlanBadgeClass(plan: string) {
-  switch (plan.toLowerCase()) {
-    case "enterprise":
-      return "border-violet-200 bg-violet-50 text-violet-700";
-    case "professional":
-      return "border-blue-200 bg-blue-50 text-blue-700";
-    case "trial":
-      return "border-amber-200 bg-amber-50 text-amber-700";
-    default:
-      return "border-slate-200 bg-slate-100 text-slate-600";
-  }
-}
-
-function getStatusBadgeClass(status: string) {
-  switch (status.toLowerCase()) {
-    case "active":
-      return "border-green-200 bg-green-50 text-green-700";
-    case "trial":
-      return "border-amber-200 bg-amber-50 text-amber-700";
-    case "suspended":
-      return "border-red-200 bg-red-50 text-red-700";
-    case "inactive":
-      return "border-slate-200 bg-slate-100 text-slate-600";
-    default:
-      return "border-slate-200 bg-slate-100 text-slate-600";
-  }
-}
-
-function getPlanLabel(plan: string) {
-  switch (plan.toLowerCase()) {
-    case "enterprise":
-      return "Enterprise";
-    case "professional":
-      return "Professional";
-    case "trial":
-      return "Trial";
-    default:
-      return plan;
-  }
-}
-
-function getStatusLabel(status: string) {
-  switch (status.toLowerCase()) {
-    case "active":
-      return "Active";
-    case "trial":
-      return "Trial";
-    case "suspended":
-      return "Suspended";
-    case "inactive":
-      return "Inactive";
-    default:
-      return status;
-  }
-}
-
-function ChangeTenantStatusModal(tenantId: string, status: string) {
+function TenantEdit(tenantEdited: Tenant) {
+  const t = useTranslations();
   const modalRef = useRef<TModalRef | null>(null);
   return (
-    <Modal modalRef={modalRef} title="Update Status" open={true}>
-      <div className="bg-white rounded-xl shadow-xl max-w-sm w-full p-6">
-        <h3 className="font-semibold text-slate-800 mb-2">Update Status</h3>
-        <p className="text-sm text-slate-600 mb-1">
-          <span id="statusTenantName" className="font-medium text-slate-800" />
-        </p>
-        <p className="text-xs text-slate-500 mb-4">
-          Current status: <span id="statusCurrentBadge" />
-        </p>
-        <label className="text-xs font-medium text-slate-600">New Status</label>
-        <select
-          id="statusNewSelect"
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 mb-4"
-        >
-          <option value="active">Active</option>
-          <option value="trial">Trial</option>
-          <option value="suspended">Suspended</option>
-          <option value="inactive">Inactive</option>
-        </select>
-        <div className="flex gap-2 justify-end">
-          <button
-            data-close-modal="tenantStatusModal"
-            className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+    <>
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        onClick={() => modalRef.current?.modalOpen()}
+      >
+        {t("Common.edit")}
+      </Button>
+      <Modal modalRef={modalRef} title="Update Status">
+        <div className="bg-white rounded-xl shadow-xl max-w-sm w-full p-6">
+          <h3 className="font-semibold text-slate-800 mb-2">
+            {tenantEdited.name}
+          </h3>
+          <p className="text-sm text-slate-600 mb-1">
+            <span
+              id="statusTenantName"
+              className="font-medium text-slate-800"
+            />
+          </p>
+          <p className="text-xs text-slate-500 mb-4">
+            Current status: <span id="statusCurrentBadge" />
+          </p>
+          <label className="text-xs font-medium text-slate-600">
+            New Status
+          </label>
+          <select
+            id="statusNewSelect"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 mb-4"
           >
-            Cancel
-          </button>
-          <button
-            id="tenantStatusSave"
-            type="button"
-            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
-          >
-            Update
-          </button>
+            <option value="active">Active</option>
+            <option value="trial">Trial</option>
+            <option value="suspended">Suspended</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <div className="flex gap-2 justify-end">
+            <button
+              data-close-modal="tenantStatusModal"
+              className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              Cancel
+            </button>
+            <button
+              id="tenantStatusSave"
+              type="button"
+              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            >
+              Update
+            </button>
+          </div>
         </div>
-      </div>
-    </Modal>
+      </Modal>
+    </>
   );
 }
+
+function TenantStatus(tenantStatus: Tenant) {
+  const t = useTranslations();
+  const modalRef = useRef<TModalRef | null>(null);
+  return (
+    <>
+      <Button
+        type="button"
+        variant="outline"
+        color="neutral"
+        size="sm"
+        onClick={() => modalRef.current?.modalOpen()}
+      >
+        {t("Common.status")}
+      </Button>
+      <Modal modalRef={modalRef} title="Update Status">
+        <div className="bg-white rounded-xl shadow-xl max-w-sm w-full p-6">
+          <h3 className="font-semibold text-slate-800 mb-2">
+            {tenantStatus.name}
+          </h3>
+          <p className="text-sm text-slate-600 mb-1">
+            <span
+              id="statusTenantName"
+              className="font-medium text-slate-800"
+            />
+          </p>
+          <p className="text-xs text-slate-500 mb-4">
+            Current status: <span id="statusCurrentBadge" />
+          </p>
+          <label className="text-xs font-medium text-slate-600">
+            New Status
+          </label>
+          <select
+            id="statusNewSelect"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 mb-4"
+          >
+            <option value="active">Active</option>
+            <option value="trial">Trial</option>
+            <option value="suspended">Suspended</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <div className="flex gap-2 justify-end">
+            <button
+              data-close-modal="tenantStatusModal"
+              className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              Cancel
+            </button>
+            <button
+              id="tenantStatusSave"
+              type="button"
+              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+}
+
+const TenantDetail = ({ tenantId }: { tenantId: string }) => {
+  const t = useTranslations();
+  return (
+    <ButtonLink
+      href={`/operator/tenants/${tenantId}`}
+      variant="outline"
+      color="neutral"
+      size="sm"
+    >
+      {t("Common.detail")}
+    </ButtonLink>
+  );
+};
 
 const TenantListColumns = () => {
   const columnHelper = createColumnHelper<typeof tableFeaturesType, Tenant>();
@@ -157,10 +189,20 @@ const TenantListColumns = () => {
       header: "Plan",
       cell: ({ getValue }) => {
         const plan = getValue();
+
         return (
-          <span className={cn(badgeClassName, getPlanBadgeClass(plan))}>
-            {getPlanLabel(plan)}
-          </span>
+          <>
+            <Badge
+              title={plan}
+              color={
+                plan.toLowerCase() === "enterprise"
+                  ? "purple"
+                  : plan.toLowerCase() === "professional"
+                    ? "primary"
+                    : "yellow"
+              }
+            />
+          </>
         );
       },
     }),
@@ -174,10 +216,21 @@ const TenantListColumns = () => {
       header: "Status",
       cell: ({ getValue }) => {
         const status = getValue();
+        console.log(status);
         return (
-          <span className={cn(badgeClassName, getStatusBadgeClass(status))}>
-            {getStatusLabel(status)}
-          </span>
+          <Badge
+            title={status}
+            color={
+              status === "有効"
+                ? "green"
+                : status === "トライアル"
+                  ? "yellow"
+                  : "danger"
+            }
+          />
+          // <span className={cn(badgeClassName, getStatusBadgeClass(status))}>
+          //   {getStatusLabel(status)}
+          // </span>
         );
       },
     }),
@@ -187,35 +240,9 @@ const TenantListColumns = () => {
       cell: ({ row }) => {
         return (
           <div className="flex items-center gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="px-1 py-2 text-xs"
-              data-tenant-edit={row.original.id}
-            >
-              Edit
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="px-1 py-2 text-xs"
-              onClick={() =>
-                ChangeTenantStatusModal(row.original.id, row.original.status)
-              }
-            >
-              Status
-            </Button>
-            <Link
-              href={{
-                pathname: "/operator/tenant/detail",
-                query: { id: row.original.id },
-              }}
-              className="text-xs text-blue-600 hover:underline"
-            >
-              Detail
-            </Link>
+            <TenantEdit {...row.original} />
+            <TenantStatus {...row.original} />
+            <TenantDetail tenantId={row.original.id as string} />
           </div>
         );
       },

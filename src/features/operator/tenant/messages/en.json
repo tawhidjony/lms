@@ -50,6 +50,7 @@
     "pageOf": "Page {current} of {total}",
     "form": {
       "addTitle": "Add tenant",
+      "editTitle": "Edit tenant",
       "companyName": "Company name",
       "companyNamePlaceholder": "Sakura Corporation",
       "japaneseName": "Japanese name",
