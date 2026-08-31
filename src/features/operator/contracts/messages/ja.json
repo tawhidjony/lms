@@ -13,7 +13,7 @@
     "filter": "フィルター:",
     "statusFilter": {
       "all": "すべてのステータス",
-      "active": "有効",
+      "valid": "有効",
       "trial": "トライアル",
       "suspended": "停止",
       "expired": "期限切れ"
@@ -38,21 +38,38 @@
       "status": "ステータス",
       "actions": "操作"
     },
+    "rowActions": {
+      "edit": "編集",
+      "status": "ステータス",
+      "tenant": "テナント"
+    },
+    "list": {
+      "error": "契約の読み込みに失敗しました"
+    },
     "previous": "前へ",
     "next": "次へ",
     "pageOf": "ページ {current} / {total}",
+    "statusLabels": {
+      "valid": "有効",
+      "trial": "トライアル",
+      "suspended": "停止",
+      "expired": "期限切れ"
+    },
     "form": {
       "addTitle": "契約を追加",
+      "editTitle": "契約を編集",
       "tenant": "テナント",
+      "tenantPlaceholder": "テナントを選択",
       "plan": "プラン",
+      "planPlaceholder": "プランを選択",
       "status": "ステータス",
+      "statusPlaceholder": "ステータスを選択",
       "seatAllocation": "シート割当",
       "usedSeats": "使用シート",
       "startDate": "開始日",
       "renewalDate": "更新日",
-      "monthlyFee": "月額料金（¥）",
-      "notes": "備考",
-      "notesPlaceholder": "請求に関する任意のメモ",
+      "monthlyFee": "月額料金",
+      "currency": "通貨",
       "cancel": "キャンセル",
       "save": "契約を保存",
       "planOptions": {
@@ -61,10 +78,39 @@
         "trial": "トライアル"
       },
       "statusOptions": {
-        "active": "有効",
+        "valid": "有効",
         "trial": "トライアル",
         "suspended": "停止",
         "expired": "期限切れ"
+      }
+    },
+    "formValidation": {
+      "tenantId": {
+        "required": "テナントは必須です"
+      },
+      "plan": {
+        "required": "プランは必須です"
+      },
+      "status": {
+        "required": "ステータスは必須です"
+      },
+      "maxUsers": {
+        "min": "シート割当は1以上である必要があります"
+      },
+      "activeUsers": {
+        "min": "使用シートは0以上である必要があります"
+      },
+      "contractStart": {
+        "required": "開始日は必須です"
+      },
+      "contractEnd": {
+        "required": "更新日は必須です"
+      },
+      "amount": {
+        "min": "金額は0以上である必要があります"
+      },
+      "currency": {
+        "required": "通貨は必須です"
       }
     },
     "statusModal": {
@@ -74,7 +120,7 @@
       "cancel": "キャンセル",
       "update": "ステータス更新",
       "statusOptions": {
-        "active": "有効 — 請求中",
+        "valid": "有効 — 請求中",
         "trial": "トライアル — 月額なし",
         "suspended": "停止 — 支払い問題",
         "expired": "期限切れ — 契約終了"

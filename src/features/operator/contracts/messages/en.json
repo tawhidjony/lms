@@ -13,7 +13,7 @@
     "filter": "Filter:",
     "statusFilter": {
       "all": "All statuses",
-      "active": "Active",
+      "valid": "Active",
       "trial": "Trial",
       "suspended": "Suspended",
       "expired": "Expired"
@@ -38,21 +38,38 @@
       "status": "Status",
       "actions": "Actions"
     },
+    "rowActions": {
+      "edit": "Edit",
+      "status": "Status",
+      "tenant": "Tenant"
+    },
+    "list": {
+      "error": "Failed to load contracts"
+    },
     "previous": "Previous",
     "next": "Next",
     "pageOf": "Page {current} of {total}",
+    "statusLabels": {
+      "valid": "Active",
+      "trial": "Trial",
+      "suspended": "Suspended",
+      "expired": "Expired"
+    },
     "form": {
       "addTitle": "Add contract",
+      "editTitle": "Edit contract",
       "tenant": "Tenant",
+      "tenantPlaceholder": "Select a tenant",
       "plan": "Plan",
+      "planPlaceholder": "Select a plan",
       "status": "Status",
+      "statusPlaceholder": "Select a status",
       "seatAllocation": "Seat allocation",
       "usedSeats": "Used seats",
       "startDate": "Start date",
       "renewalDate": "Renewal date",
-      "monthlyFee": "Monthly fee (¥)",
-      "notes": "Notes",
-      "notesPlaceholder": "Optional billing notes",
+      "monthlyFee": "Monthly fee",
+      "currency": "Currency",
       "cancel": "Cancel",
       "save": "Save contract",
       "planOptions": {
@@ -61,10 +78,39 @@
         "trial": "Trial"
       },
       "statusOptions": {
-        "active": "Active",
+        "valid": "Active",
         "trial": "Trial",
         "suspended": "Suspended",
         "expired": "Expired"
+      }
+    },
+    "formValidation": {
+      "tenantId": {
+        "required": "Tenant is required"
+      },
+      "plan": {
+        "required": "Plan is required"
+      },
+      "status": {
+        "required": "Status is required"
+      },
+      "maxUsers": {
+        "min": "Seat allocation must be at least 1"
+      },
+      "activeUsers": {
+        "min": "Used seats must be 0 or greater"
+      },
+      "contractStart": {
+        "required": "Start date is required"
+      },
+      "contractEnd": {
+        "required": "Renewal date is required"
+      },
+      "amount": {
+        "min": "Amount must be 0 or greater"
+      },
+      "currency": {
+        "required": "Currency is required"
       }
     },
     "statusModal": {
@@ -74,7 +120,7 @@
       "cancel": "Cancel",
       "update": "Update status",
       "statusOptions": {
-        "active": "Active — Billing active",
+        "valid": "Active — Billing active",
         "trial": "Trial — No monthly fee",
         "suspended": "Suspended — Payment issue",
         "expired": "Expired — Contract ended"

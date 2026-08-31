@@ -78,12 +78,12 @@ export default function TenantDetailView() {
             </div>
           </dl>
           <div className="flex flex-wrap gap-2 mt-4">
-            <a
-              href="contracts.html"
+            <Link
+              href="/operator/contracts"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
               契約を見る
-            </a>
+            </Link>
             <a
               href="package-edit.html?id=pkg-enterprise"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
