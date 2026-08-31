@@ -3,6 +3,7 @@
     "title": "Subscription packages",
     "description": "Paid plans tenants contract — pricing and limits",
     "addPackage": "+ Add package",
+    "backToList": "Back to packages",
     "stats": {
       "total": "Total packages",
       "active": "Active plans",
@@ -19,14 +20,66 @@
     "filterHint": "Tenants select a package when contracting",
     "searchPlaceholder": "Search the table…",
     "showingMeta": "Showing {from}–{to} of {total} total",
+    "columns": {
+      "package": "Package",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "seats": "Seats",
+      "tenants": "Tenants",
+      "status": "Status",
+      "actions": "Actions"
+    },
     "status": {
-      "active": "Active"
+      "active": "Active",
+      "hidden": "Hidden",
+      "archived": "Archived"
     },
     "free": "Free",
     "unnamed": "Unnamed",
     "edit": "Edit",
     "previous": "Previous",
     "next": "Next",
-    "pageOf": "Page {current} of {total}"
+    "pageOf": "Page {current} of {total}",
+    "list": {
+      "error": "Failed to load packages"
+    },
+    "form": {
+      "addTitle": "Add package",
+      "editTitle": "Edit package",
+      "name": "Package name",
+      "namePlaceholder": "Enterprise",
+      "monthlyPrice": "Monthly price (¥)",
+      "monthlyPricePlaceholder": "480000",
+      "yearlyPrice": "Yearly price (¥)",
+      "yearlyPricePlaceholder": "5184000",
+      "seats": "Seat limit",
+      "seatsPlaceholder": "500",
+      "status": "Status",
+      "statusPlaceholder": "Select a status",
+      "cancel": "Cancel",
+      "save": "Save package",
+      "statusOptions": {
+        "active": "Active",
+        "hidden": "Hidden",
+        "archived": "Archived"
+      }
+    },
+    "formValidation": {
+      "name": {
+        "required": "Package name is required"
+      },
+      "monthlyPrice": {
+        "min": "Monthly price must be 0 or greater"
+      },
+      "yearlyPrice": {
+        "min": "Yearly price must be 0 or greater"
+      },
+      "seats": {
+        "min": "Seats must be at least 1"
+      },
+      "status": {
+        "required": "Status is required"
+      }
+    }
   }
 }

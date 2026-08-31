@@ -3,6 +3,7 @@
     "title": "サブスクリプションパッケージ",
     "description": "テナントが契約する有料プラン — 価格と制限",
     "addPackage": "+ パッケージを追加",
+    "backToList": "パッケージ一覧に戻る",
     "stats": {
       "total": "パッケージ総数",
       "active": "有効プラン",
@@ -19,14 +20,66 @@
     "filterHint": "テナントは契約時にパッケージを選択します",
     "searchPlaceholder": "テーブルを検索…",
     "showingMeta": "全{total}件中 {from}–{to}件表示",
+    "columns": {
+      "package": "パッケージ",
+      "monthly": "月額",
+      "yearly": "年額",
+      "seats": "シート",
+      "tenants": "テナント",
+      "status": "ステータス",
+      "actions": "操作"
+    },
     "status": {
-      "active": "有効"
+      "active": "有効",
+      "hidden": "非表示",
+      "archived": "アーカイブ"
     },
     "free": "無料",
     "unnamed": "名称なし",
     "edit": "編集",
     "previous": "前へ",
     "next": "次へ",
-    "pageOf": "ページ {current} / {total}"
+    "pageOf": "ページ {current} / {total}",
+    "list": {
+      "error": "パッケージの読み込みに失敗しました"
+    },
+    "form": {
+      "addTitle": "パッケージを追加",
+      "editTitle": "パッケージを編集",
+      "name": "パッケージ名",
+      "namePlaceholder": "Enterprise",
+      "monthlyPrice": "月額（¥）",
+      "monthlyPricePlaceholder": "480000",
+      "yearlyPrice": "年額（¥）",
+      "yearlyPricePlaceholder": "5184000",
+      "seats": "シート上限",
+      "seatsPlaceholder": "500",
+      "status": "ステータス",
+      "statusPlaceholder": "ステータスを選択",
+      "cancel": "キャンセル",
+      "save": "パッケージを保存",
+      "statusOptions": {
+        "active": "有効",
+        "hidden": "非表示",
+        "archived": "アーカイブ"
+      }
+    },
+    "formValidation": {
+      "name": {
+        "required": "パッケージ名は必須です"
+      },
+      "monthlyPrice": {
+        "min": "月額は0以上である必要があります"
+      },
+      "yearlyPrice": {
+        "min": "年額は0以上である必要があります"
+      },
+      "seats": {
+        "min": "シート数は1以上である必要があります"
+      },
+      "status": {
+        "required": "ステータスは必須です"
+      }
+    }
   }
 }
