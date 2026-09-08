@@ -29,7 +29,7 @@ export default function LoginComponent() {
         router.push("/creator");
         break;
       case "companyAdmin":
-        router.push("/company-admin");
+        router.push("/admin");
         break;
       case "operator":
         router.push("/operator");
