@@ -1,16 +1,25 @@
-import React from 'react';
-import { Handle, Position } from '@xyflow/react';
+"use client";
+
+import { cn } from "@/lib/utils";
+import { Handle, Position } from "@xyflow/react";
+import { useTranslations } from "next-intl";
+import React from "react";
 
 export const EndNode: React.FC = () => {
+  const t = useTranslations("creatorScenarios");
+
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex cursor-grab flex-col items-center active:cursor-grabbing">
       <Handle
-        type="target"
+        type="source"
         position={Position.Top}
-        className="!bg-gray-400 !w-3 !h-3 !border-2 !border-white"
+        id="top"
+        className={cn(
+          "!h-3.5 !w-3.5 !rounded-sm !border-2 !border-slate-400 !bg-white !shadow-sm transition-transform hover:!scale-110",
+        )}
       />
-      <div className="bg-white border-2 border-gray-300 text-gray-600 text-[10px] font-bold px-3 py-0.5 rounded-full shadow-sm uppercase">
-        END
+      <div className="rounded-full border-2 border-slate-300 bg-white px-3 py-0.5 text-[10px] font-bold text-slate-600 uppercase shadow-sm">
+        {t("builder.nodes.end")}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 import { UiForm } from "@/components/form";
 import { TUiFormRef } from "@/components/form/ui-form.types";
 import { type TModalRef } from "@/components/ui";
+import { useMessages } from "next-intl";
 import { useRef } from "react";
 
 import {
@@ -20,7 +21,8 @@ type ScenarioFormComponentProps = {
 export default function ScenarioFormComponent({
   modalRef,
 }: ScenarioFormComponentProps) {
-  const schema = createScenarioFormSchema();
+  const messages = useMessages();
+  const schema = createScenarioFormSchema(messages);
   const formRef = useRef<TUiFormRef<TScenarioFormSchemaInput>>(null);
 
   const onSubmit = async (data: TScenarioFormSchemaOutput): Promise<void> => {

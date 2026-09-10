@@ -9,7 +9,8 @@ import { useRef } from "react";
 import { Scenario } from "../types/scenarios.types";
 
 function ScenarioEdit(scenarioEdited: Scenario) {
-  const t = useTranslations();
+  const t = useTranslations("creatorScenarios");
+  const tCommon = useTranslations("Common");
   const modalRef = useRef<TModalRef | null>(null);
   return (
     <>
@@ -19,29 +20,29 @@ function ScenarioEdit(scenarioEdited: Scenario) {
         size="sm"
         onClick={() => modalRef.current?.modalOpen()}
       >
-        {t("Common.edit")}
+        {tCommon("edit")}
       </Button>
-      <Modal modalRef={modalRef} title="Update Status">
+      <Modal modalRef={modalRef} title={t("statusModal.title")}>
         <div className="bg-white rounded-xl shadow-xl max-w-sm w-full p-6">
           <h3 className="font-semibold text-slate-800 mb-2">
             {scenarioEdited.title}
           </h3>
           <p className="text-xs text-slate-500 mb-4">
-            Current status:{" "}
+            {t("statusModal.currentStatus")}{" "}
             <span className="font-medium text-slate-800">
-              {scenarioEdited.status}
+              {t(`status.${scenarioEdited.status}`)}
             </span>
           </p>
           <label className="text-xs font-medium text-slate-600">
-            New Status
+            {t("statusModal.newStatus")}
           </label>
           <select
             id="statusNewSelect"
             className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 mb-4"
           >
-            <option value="draft">Draft</option>
-            <option value="published">Published</option>
-            <option value="archived">Archived</option>
+            <option value="draft">{t("status.draft")}</option>
+            <option value="published">{t("status.published")}</option>
+            <option value="archived">{t("status.archived")}</option>
           </select>
           <div className="flex gap-2 justify-end">
             <button
@@ -49,14 +50,14 @@ function ScenarioEdit(scenarioEdited: Scenario) {
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
               onClick={() => modalRef.current?.modalClose()}
             >
-              Cancel
+              {t("statusModal.cancel")}
             </button>
             <button
               id="scenarioStatusSave"
               type="button"
               className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
             >
-              Update
+              {t("statusModal.update")}
             </button>
           </div>
         </div>
@@ -66,7 +67,8 @@ function ScenarioEdit(scenarioEdited: Scenario) {
 }
 
 function ScenarioStatus(scenarioStatus: Scenario) {
-  const t = useTranslations();
+  const t = useTranslations("creatorScenarios");
+  const tCommon = useTranslations("Common");
   const modalRef = useRef<TModalRef | null>(null);
   return (
     <>
@@ -77,29 +79,29 @@ function ScenarioStatus(scenarioStatus: Scenario) {
         size="sm"
         onClick={() => modalRef.current?.modalOpen()}
       >
-        {t("Common.status")}
+        {tCommon("status")}
       </Button>
-      <Modal modalRef={modalRef} title="Update Status">
+      <Modal modalRef={modalRef} title={t("statusModal.title")}>
         <div className="bg-white rounded-xl shadow-xl max-w-sm w-full p-6">
           <h3 className="font-semibold text-slate-800 mb-2">
             {scenarioStatus.title}
           </h3>
           <p className="text-xs text-slate-500 mb-4">
-            Current status:{" "}
+            {t("statusModal.currentStatus")}{" "}
             <span className="font-medium text-slate-800">
-              {scenarioStatus.status}
+              {t(`status.${scenarioStatus.status}`)}
             </span>
           </p>
           <label className="text-xs font-medium text-slate-600">
-            New Status
+            {t("statusModal.newStatus")}
           </label>
           <select
             id="statusNewSelect"
             className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 mt-1 mb-4"
           >
-            <option value="draft">Draft</option>
-            <option value="published">Published</option>
-            <option value="archived">Archived</option>
+            <option value="draft">{t("status.draft")}</option>
+            <option value="published">{t("status.published")}</option>
+            <option value="archived">{t("status.archived")}</option>
           </select>
           <div className="flex gap-2 justify-end">
             <button
@@ -107,14 +109,14 @@ function ScenarioStatus(scenarioStatus: Scenario) {
               className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
               onClick={() => modalRef.current?.modalClose()}
             >
-              Cancel
+              {t("statusModal.cancel")}
             </button>
             <button
               id="scenarioStatusSave"
               type="button"
               className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
             >
-              Update
+              {t("statusModal.update")}
             </button>
           </div>
         </div>
@@ -124,7 +126,7 @@ function ScenarioStatus(scenarioStatus: Scenario) {
 }
 
 const ScenarioDetail = ({ scenarioId }: { scenarioId: string }) => {
-  const t = useTranslations();
+  const tCommon = useTranslations("Common");
   return (
     <ButtonLink
       href={`/creator/scenarios/${scenarioId}`}
@@ -132,17 +134,19 @@ const ScenarioDetail = ({ scenarioId }: { scenarioId: string }) => {
       color="neutral"
       size="sm"
     >
-      {t("Common.detail")}
+      {tCommon("detail")}
     </ButtonLink>
   );
 };
 
-const ScenariosListColumns = () => {
+export const scenariosListColumns = (
+  t: ReturnType<typeof useTranslations<"creatorScenarios">>,
+) => {
   const columnHelper = createColumnHelper<typeof tableFeaturesType, Scenario>();
   return columnHelper.columns([
     columnHelper.accessor("title", {
       id: "title",
-      header: "Title",
+      header: t("columns.title"),
       cell: ({ row }) => (
         <div>
           <Link
@@ -158,18 +162,18 @@ const ScenariosListColumns = () => {
       ),
     }),
     columnHelper.accessor("category", {
-      header: "Category",
+      header: t("columns.category"),
       cell: ({ getValue }) => (
         <span className="text-sm text-slate-600">{getValue()}</span>
       ),
     }),
     columnHelper.accessor("difficulty", {
-      header: "Difficulty",
+      header: t("columns.difficulty"),
       cell: ({ getValue }) => {
         const difficulty = getValue();
         return (
           <Badge
-            title={difficulty}
+            title={t(`difficulty.${difficulty}`)}
             color={
               difficulty === "advanced"
                 ? "danger"
@@ -182,16 +186,16 @@ const ScenariosListColumns = () => {
       },
     }),
     columnHelper.accessor("steps", {
-      header: "Steps",
+      header: t("columns.steps"),
       cell: ({ getValue }) => <span className="text-sm">{getValue()}</span>,
     }),
     columnHelper.accessor("status", {
-      header: "Status",
+      header: t("columns.status"),
       cell: ({ getValue }) => {
         const status = getValue();
         return (
           <Badge
-            title={status}
+            title={t(`status.${status}`)}
             color={
               status === "published"
                 ? "green"
@@ -204,14 +208,14 @@ const ScenariosListColumns = () => {
       },
     }),
     columnHelper.accessor("updatedAt", {
-      header: "Updated",
+      header: t("columns.updated"),
       cell: ({ getValue }) => (
         <span className="text-sm text-slate-600">{getValue()}</span>
       ),
     }),
     columnHelper.display({
       id: "actions",
-      header: "Actions",
+      header: t("columns.actions"),
       cell: ({ row }) => {
         return (
           <div className="flex items-center gap-2">
@@ -224,5 +228,3 @@ const ScenariosListColumns = () => {
     }),
   ]);
 };
-
-export const scenariosListColumns = ScenariosListColumns();

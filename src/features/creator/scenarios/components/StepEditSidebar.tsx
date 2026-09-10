@@ -1,14 +1,26 @@
+"use client";
+
 import { Node } from "@xyflow/react";
+import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { VideoStepNodeData } from "../scenario/scenario.type";
-import { useScenarioStore } from "../store/useScenarioStore";
+import {
+  ScenarioStepDefaults,
+  useScenarioStore,
+} from "../store/useScenarioStore";
 
 interface Props {
   node: Node;
   onClose: () => void;
+  stepDefaults: ScenarioStepDefaults;
 }
 
-export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
+export const StepEditSidebar: React.FC<Props> = ({
+  node,
+  onClose,
+  stepDefaults,
+}) => {
+  const t = useTranslations("creatorScenarios");
   const {
     updateNodeData,
     addOptionToNode,
@@ -49,9 +61,10 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
 
   return (
     <div className="w-80 h-full bg-white border-l border-gray-200 shadow-xl flex flex-col z-20">
-      {/* Header */}
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-        <h2 className="font-bold text-sm text-gray-800">ステップ編集</h2>
+        <h2 className="font-bold text-sm text-gray-800">
+          {t("builder.sidebar.title")}
+        </h2>
         <button
           onClick={onClose}
           className="text-gray-400 hover:text-gray-600 text-lg font-bold"
@@ -60,12 +73,10 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
         </button>
       </div>
 
-      {/* Main Content */}
       <div className="p-4 flex-1 overflow-y-auto space-y-4 text-xs">
-        {/* Step Details */}
         <div>
           <label className="block text-gray-600 font-medium mb-1">
-            動画タイトル
+            {t("builder.sidebar.videoTitle")}
           </label>
           <input
             type="text"
@@ -77,7 +88,7 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
 
         <div>
           <label className="block text-gray-600 font-medium mb-1">
-            動画URL
+            {t("builder.sidebar.videoUrl")}
           </label>
           <input
             type="text"
@@ -89,7 +100,9 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
 
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="block text-gray-600 font-medium mb-1">長さ</label>
+            <label className="block text-gray-600 font-medium mb-1">
+              {t("builder.sidebar.length")}
+            </label>
             <input
               type="text"
               value={length}
@@ -99,7 +112,7 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
           </div>
           <div>
             <label className="block text-gray-600 font-medium mb-1">
-              分岐タイミング
+              {t("builder.sidebar.branchingTiming")}
             </label>
             <input
               type="text"
@@ -111,7 +124,9 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
         </div>
 
         <div>
-          <label className="block text-gray-600 font-medium mb-1">質問</label>
+          <label className="block text-gray-600 font-medium mb-1">
+            {t("builder.sidebar.question")}
+          </label>
           <textarea
             rows={2}
             value={question}
@@ -120,15 +135,16 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
           />
         </div>
 
-        {/* 🌿 Children / Option List Section */}
         <div className="pt-2 border-t border-gray-200">
           <div className="flex items-center justify-between mb-3">
-            <span className="font-bold text-gray-700">回答選択肢</span>
+            <span className="font-bold text-gray-700">
+              {t("builder.sidebar.answerOptions")}
+            </span>
             <button
-              onClick={() => addOptionToNode(node.id)}
+              onClick={() => addOptionToNode(node.id, stepDefaults)}
               className="text-blue-600 hover:text-blue-700 font-semibold text-[11px]"
             >
-              + 選択肢を追加
+              {t("builder.sidebar.addOption")}
             </button>
           </div>
 
@@ -143,19 +159,21 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-gray-600">
-                        選択肢 {optionLetter}
+                        {t("builder.sidebar.optionLetter", {
+                          letter: optionLetter,
+                        })}
                       </span>
                       <button
                         onClick={() => removeOptionFromNode(node.id, opt.id)}
                         className="text-red-500 hover:text-red-700 text-[11px] font-medium"
                       >
-                        削除
+                        {t("builder.sidebar.delete")}
                       </button>
                     </div>
 
                     <div>
                       <label className="block text-gray-500 text-[10px] mb-1">
-                        回答テキスト
+                        {t("builder.sidebar.answerText")}
                       </label>
                       <input
                         type="text"
@@ -169,10 +187,12 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
 
                     <div>
                       <label className="block text-gray-500 text-[10px] mb-1">
-                        次のステップ
+                        {t("builder.sidebar.nextStep")}
                       </label>
                       <div className="p-1.5 bg-white border border-gray-200 rounded text-gray-600 text-[11px]">
-                        ステップ {opt.nextStepId}: 新しい動画ステップ
+                        {t("builder.sidebar.nextStepValue", {
+                          id: opt.nextStepId ?? "",
+                        })}
                       </div>
                     </div>
                   </div>
@@ -180,26 +200,25 @@ export const StepEditSidebar: React.FC<Props> = ({ node, onClose }) => {
               })
             ) : (
               <p className="text-gray-400 italic text-[11px]">
-                選択肢がまだありません
+                {t("builder.sidebar.noOptions")}
               </p>
             )}
           </div>
         </div>
       </div>
 
-      {/* Footer Buttons */}
       <div className="p-4 border-t border-gray-200 flex gap-2 bg-gray-50">
         <button
           onClick={handleSave}
           className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-medium text-xs transition-colors"
         >
-          変更を適用
+          {t("builder.sidebar.apply")}
         </button>
         <button
           onClick={onClose}
           className="px-3 py-2 bg-white border border-gray-300 hover:bg-gray-100 text-gray-600 rounded font-medium text-xs transition-colors"
         >
-          閉じる
+          {t("builder.sidebar.close")}
         </button>
       </div>
     </div>

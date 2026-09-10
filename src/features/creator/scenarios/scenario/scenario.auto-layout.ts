@@ -5,31 +5,58 @@ import { VideoStepNodeData } from "./scenario.type";
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 
-const NODE_WIDTH = 290;
-const BASE_NODE_HEIGHT = 230; // হেডার, কোশ্চেন ও বাটনের বেসিক হাইট
-const OPTION_HEIGHT = 45; // প্রতি অপশনের জন্য অতিরিক্ত হাইট
+export const NODE_WIDTH = 290;
+export const BASE_NODE_HEIGHT = 230;
+export const OPTION_HEIGHT = 45;
+const CHILD_GAP_X = 40;
+const CHILD_GAP_Y = 100;
+
+function getNodeSize(node: Node): { width: number; height: number } {
+  if (node.type === "start" || node.type === "end") {
+    return { width: 120, height: 40 };
+  }
+
+  const optionsCount =
+    (node.data as VideoStepNodeData)?.options?.length || 0;
+  return {
+    width: NODE_WIDTH,
+    height: BASE_NODE_HEIGHT + optionsCount * OPTION_HEIGHT,
+  };
+}
+
+/** Place a new child near its parent without moving existing nodes. */
+export function getNewChildPosition(
+  parent: Node,
+  siblingNodes: Node[],
+): { x: number; y: number } {
+  const parentSize = getNodeSize(parent);
+
+  if (siblingNodes.length === 0) {
+    return {
+      x: parent.position.x + (parentSize.width - NODE_WIDTH) / 2,
+      y: parent.position.y + parentSize.height + CHILD_GAP_Y,
+    };
+  }
+
+  const rightmost = siblingNodes.reduce((max, node) =>
+    node.position.x > max.position.x ? node : max,
+  );
+
+  return {
+    x: rightmost.position.x + NODE_WIDTH + CHILD_GAP_X,
+    y: rightmost.position.y,
+  };
+}
 
 export const scenarioAutoLayout = (
   nodes: Node[],
   edges: Edge[],
   direction: "TB" | "LR" = "TB",
 ) => {
-  // ranksep: উপরে-নিচে নোডগুলোর গ্যাপিং (130px)
-  // nodesep: পাশে নোডগুলোর গ্যাপিং (70px)
   dagreGraph.setGraph({ rankdir: direction, nodesep: 70, ranksep: 130 });
 
   nodes.forEach((node) => {
-    const isSmallNode = node.type === "start";
-    const width = isSmallNode ? 120 : NODE_WIDTH;
-
-    // 🚀 ডাইনামিক হাইট ক্যালকুলেশন
-    let height = 40;
-    if (!isSmallNode) {
-      const optionsCount =
-        (node.data as VideoStepNodeData)?.options?.length || 0;
-      height = BASE_NODE_HEIGHT + optionsCount * OPTION_HEIGHT;
-    }
-
+    const { width, height } = getNodeSize(node);
     dagreGraph.setNode(node.id, { width, height });
   });
 
@@ -41,15 +68,7 @@ export const scenarioAutoLayout = (
 
   const layoutedNodes = nodes.map((node) => {
     const nodeWithPosition = dagreGraph.node(node.id);
-    const isSmallNode = node.type === "start";
-    const width = isSmallNode ? 120 : NODE_WIDTH;
-
-    let height = 40;
-    if (!isSmallNode) {
-      const optionsCount =
-        (node.data as VideoStepNodeData)?.options?.length || 0;
-      height = BASE_NODE_HEIGHT + optionsCount * OPTION_HEIGHT;
-    }
+    const { width, height } = getNodeSize(node);
 
     return {
       ...node,

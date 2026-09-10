@@ -9,6 +9,7 @@ import operatorDashboard from "@/features/operator/dashboard/messages/en.json";
 import operatorPackages from "@/features/operator/package/messages/en.json";
 import operatorTenant from "@/features/operator/tenant/messages/en.json";
 import operatorContracts from "@/features/operator/contracts/messages/en.json";
+import creatorScenarios from "@/features/creator/scenarios/messages/en.json";
 
 export const messages = {
   ...common,
@@ -21,4 +22,5 @@ export const messages = {
   ...operatorPackages,
   ...operatorTenant,
   ...operatorContracts,
+  ...creatorScenarios,
 } as const;

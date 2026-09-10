@@ -27,4 +27,8 @@ export const featureMessageRegistry = {
     en: () => import("@/features/operator/contracts/messages/en.json"),
     ja: () => import("@/features/operator/contracts/messages/ja.json"),
   },
+  creatorScenarios: {
+    en: () => import("@/features/creator/scenarios/messages/en.json"),
+    ja: () => import("@/features/creator/scenarios/messages/ja.json"),
+  },
 } as const;

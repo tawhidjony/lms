@@ -1,0 +1,171 @@
+{
+  "creatorScenarios": {
+    "title": "シナリオ",
+    "description": "コース向けのインタラクティブなトレーニングシナリオを管理します。",
+    "addScenario": "シナリオを追加",
+    "stats": {
+      "total": "合計",
+      "published": "公開済み",
+      "draft": "下書き",
+      "archived": "アーカイブ"
+    },
+    "list": {
+      "error": "シナリオの読み込みに失敗しました",
+      "searchPlaceholder": "シナリオを検索…",
+      "showingMeta": "{from}–{to} / {total} 件を表示",
+      "previous": "前へ",
+      "next": "次へ",
+      "pageOf": "{current} / {total} ページ"
+    },
+    "filter": {
+      "label": "フィルター",
+      "allStatuses": "すべてのステータス",
+      "allDifficulties": "すべての難易度",
+      "hint": "検索でタイトルからシナリオを探せます"
+    },
+    "columns": {
+      "title": "タイトル",
+      "category": "カテゴリ",
+      "difficulty": "難易度",
+      "steps": "ステップ",
+      "status": "ステータス",
+      "updated": "更新日",
+      "actions": "操作"
+    },
+    "status": {
+      "draft": "下書き",
+      "published": "公開済み",
+      "archived": "アーカイブ"
+    },
+    "difficulty": {
+      "beginner": "初級",
+      "intermediate": "中級",
+      "advanced": "上級"
+    },
+    "statusModal": {
+      "title": "ステータスを更新",
+      "currentStatus": "現在のステータス:",
+      "newStatus": "新しいステータス",
+      "cancel": "キャンセル",
+      "update": "更新"
+    },
+    "form": {
+      "title": "タイトル",
+      "titlePlaceholder": "シナリオ名",
+      "description": "説明",
+      "descriptionPlaceholder": "シナリオの説明を入力",
+      "category": "カテゴリ",
+      "categoryPlaceholder": "例: 安全",
+      "difficulty": "難易度",
+      "difficultyPlaceholder": "難易度を選択",
+      "steps": "ステップ",
+      "status": "ステータス",
+      "statusPlaceholder": "ステータスを選択",
+      "cancel": "キャンセル",
+      "save": "保存"
+    },
+    "formValidation": {
+      "title": {
+        "required": "タイトルは必須です"
+      },
+      "category": {
+        "required": "カテゴリは必須です"
+      },
+      "difficulty": {
+        "required": "難易度は必須です"
+      },
+      "steps": {
+        "min": "ステップ数は0以上である必要があります"
+      },
+      "status": {
+        "required": "ステータスは必須です"
+      }
+    },
+    "detail": {
+      "backToList": "← シナリオ",
+      "archive": "シナリオをアーカイブ",
+      "archivedAlert": "シナリオをアーカイブしました",
+      "steps": "ステップ",
+      "difficulty": "難易度",
+      "status": "ステータス",
+      "updated": "更新日",
+      "detailsTitle": "シナリオ詳細",
+      "title": "タイトル",
+      "category": "カテゴリ",
+      "recentActivity": "最近のアクティビティ",
+      "metaLine": "カテゴリ: {category} · 難易度: {difficulty} · ステータス: {status}",
+      "demo": {
+        "title": "職場安全訓練",
+        "category": "安全",
+        "description": "模擬的な職場環境で危険を認識し、正しい対応を選ぶ練習をします。",
+        "activity1": "9月1日 — シナリオを公開",
+        "activity2": "8月28日 — ステップ7のフィードバックを更新",
+        "activity3": "8月20日 — 下書きを作成",
+        "activity4": "8月15日 — カテゴリを安全に設定"
+      }
+    },
+    "builder": {
+      "toolbar": {
+        "scenarioName": "シナリオ名",
+        "defaultName": "顧客クレーム対応",
+        "published": "公開済み",
+        "saveDraft": "下書き保存",
+        "preview": "プレビュー",
+        "addVideoStep": "+ 動画ステップ追加"
+      },
+      "canvas": {
+        "title": "シナリオフロー",
+        "description": "各カードに動画・質問・分岐を表示 · クリックで編集",
+        "autoLayout": "自動レイアウト"
+      },
+      "edges": {
+        "remove": "接続を削除"
+      },
+      "preview": {
+        "title": "受講者プレビュー",
+        "close": "閉じる",
+        "videoTitle": "動画タイトル",
+        "play": "▶ 再生",
+        "pause": "一時停止",
+        "jumpToDecision": "決定ポイントへジャンプ",
+        "completed": "✓ シナリオ完了 — 下でパスを確認。",
+        "learnerPath": "受講者パス",
+        "pathHint": "選択してパスを作成"
+      },
+      "sidebar": {
+        "title": "ステップ編集",
+        "videoTitle": "動画タイトル",
+        "videoUrl": "動画URL",
+        "length": "長さ",
+        "branchingTiming": "分岐タイミング",
+        "question": "質問",
+        "answerOptions": "回答選択肢",
+        "addOption": "+ 選択肢を追加",
+        "optionLetter": "選択肢 {letter}",
+        "delete": "削除",
+        "answerText": "回答テキスト",
+        "nextStep": "次のステップ",
+        "nextStepValue": "ステップ {id}: 新しい動画ステップ",
+        "noOptions": "選択肢がまだありません",
+        "apply": "変更を適用",
+        "close": "閉じる"
+      },
+      "nodes": {
+        "start": "START",
+        "end": "END",
+        "length": "長さ: {value}",
+        "branchingTiming": "分岐タイミング: {value}",
+        "question": "質問",
+        "nextStep": "→ ステップ {id}",
+        "noOptions": "回答選択肢がまだありません",
+        "edit": "編集",
+        "delete": "削除"
+      },
+      "defaults": {
+        "newVideoStep": "新しい動画ステップ",
+        "defaultQuestion": "学習者は何をすべきですか？",
+        "continueToNewStep": "新しい動画ステップへ進む"
+      }
+    }
+  }
+}

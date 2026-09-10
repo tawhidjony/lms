@@ -1,0 +1,171 @@
+{
+  "creatorScenarios": {
+    "title": "Scenarios",
+    "description": "Manage interactive training scenarios for courses.",
+    "addScenario": "Add Scenario",
+    "stats": {
+      "total": "Total",
+      "published": "Published",
+      "draft": "Draft",
+      "archived": "Archived"
+    },
+    "list": {
+      "error": "Failed to load scenarios",
+      "searchPlaceholder": "Search scenarios…",
+      "showingMeta": "Showing {from}–{to} of {total}",
+      "previous": "Previous",
+      "next": "Next",
+      "pageOf": "Page {current} of {total}"
+    },
+    "filter": {
+      "label": "Filter",
+      "allStatuses": "All statuses",
+      "allDifficulties": "All difficulties",
+      "hint": "Use search to find scenarios by title"
+    },
+    "columns": {
+      "title": "Title",
+      "category": "Category",
+      "difficulty": "Difficulty",
+      "steps": "Steps",
+      "status": "Status",
+      "updated": "Updated",
+      "actions": "Actions"
+    },
+    "status": {
+      "draft": "Draft",
+      "published": "Published",
+      "archived": "Archived"
+    },
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "statusModal": {
+      "title": "Update Status",
+      "currentStatus": "Current status:",
+      "newStatus": "New Status",
+      "cancel": "Cancel",
+      "update": "Update"
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "Scenario title",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe the scenario",
+      "category": "Category",
+      "categoryPlaceholder": "e.g. Safety",
+      "difficulty": "Difficulty",
+      "difficultyPlaceholder": "Select difficulty",
+      "steps": "Steps",
+      "status": "Status",
+      "statusPlaceholder": "Select status",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "formValidation": {
+      "title": {
+        "required": "Title is required"
+      },
+      "category": {
+        "required": "Category is required"
+      },
+      "difficulty": {
+        "required": "Difficulty is required"
+      },
+      "steps": {
+        "min": "Steps must be 0 or greater"
+      },
+      "status": {
+        "required": "Status is required"
+      }
+    },
+    "detail": {
+      "backToList": "← Scenarios",
+      "archive": "Archive Scenario",
+      "archivedAlert": "Scenario archived",
+      "steps": "Steps",
+      "difficulty": "Difficulty",
+      "status": "Status",
+      "updated": "Updated",
+      "detailsTitle": "Scenario Details",
+      "title": "Title",
+      "category": "Category",
+      "recentActivity": "Recent Activity",
+      "metaLine": "Category: {category} · Difficulty: {difficulty} · Status: {status}",
+      "demo": {
+        "title": "Workplace Safety Drill",
+        "category": "Safety",
+        "description": "Practice recognizing hazards and choosing the correct response in a simulated workplace environment.",
+        "activity1": "Sep 1 — Scenario published",
+        "activity2": "Aug 28 — Step 7 feedback updated",
+        "activity3": "Aug 20 — Draft created",
+        "activity4": "Aug 15 — Category set to Safety"
+      }
+    },
+    "builder": {
+      "toolbar": {
+        "scenarioName": "Scenario name",
+        "defaultName": "Customer complaint handling",
+        "published": "Published",
+        "saveDraft": "Save draft",
+        "preview": "Preview",
+        "addVideoStep": "+ Add video step"
+      },
+      "canvas": {
+        "title": "Scenario flow",
+        "description": "Each card shows video, question, and branches · click to edit",
+        "autoLayout": "Auto layout"
+      },
+      "edges": {
+        "remove": "Remove connection"
+      },
+      "preview": {
+        "title": "Learner preview",
+        "close": "Close",
+        "videoTitle": "Video title",
+        "play": "▶ Play",
+        "pause": "Pause",
+        "jumpToDecision": "Jump to decision point",
+        "completed": "✓ Scenario complete — review your path below.",
+        "learnerPath": "Learner path",
+        "pathHint": "Make choices to build a path"
+      },
+      "sidebar": {
+        "title": "Edit step",
+        "videoTitle": "Video title",
+        "videoUrl": "Video URL",
+        "length": "Length",
+        "branchingTiming": "Branching timing",
+        "question": "Question",
+        "answerOptions": "Answer options",
+        "addOption": "+ Add option",
+        "optionLetter": "Option {letter}",
+        "delete": "Delete",
+        "answerText": "Answer text",
+        "nextStep": "Next step",
+        "nextStepValue": "Step {id}: New video step",
+        "noOptions": "No options yet",
+        "apply": "Apply changes",
+        "close": "Close"
+      },
+      "nodes": {
+        "start": "START",
+        "end": "END",
+        "length": "Length: {value}",
+        "branchingTiming": "Branching: {value}",
+        "question": "Question",
+        "nextStep": "→ Step {id}",
+        "noOptions": "No answer options yet",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "defaults": {
+        "newVideoStep": "New video step",
+        "defaultQuestion": "What should the learner do?",
+        "continueToNewStep": "Continue to new video step"
+      }
+    }
+  }
+}

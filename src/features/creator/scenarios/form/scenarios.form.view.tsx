@@ -4,6 +4,7 @@ import { FormInput } from "@/components/form/fields/form-input";
 import { FormSelect } from "@/components/form/fields/form-select";
 import { FormTextarea } from "@/components/form/fields/form-textarea";
 import { Button } from "@/components/ui";
+import { useTranslations } from "next-intl";
 
 import { TScenarioFormSchemaInput } from "./scenarios.form.schema";
 
@@ -12,6 +13,8 @@ type ScenarioFormViewProps = {
 };
 
 export default function ScenarioFormView({ onCancel }: ScenarioFormViewProps) {
+  const t = useTranslations("creatorScenarios");
+
   return (
     <>
       <div className="grid gap-3 text-sm sm:grid-cols-2">
@@ -19,8 +22,8 @@ export default function ScenarioFormView({ onCancel }: ScenarioFormViewProps) {
           <FormInput<TScenarioFormSchemaInput>
             name="title"
             id="scenarioFormTitle"
-            label="Title"
-            placeholder="Scenario title"
+            label={t("form.title")}
+            placeholder={t("form.titlePlaceholder")}
             required
           />
         </div>
@@ -29,8 +32,8 @@ export default function ScenarioFormView({ onCancel }: ScenarioFormViewProps) {
           <FormTextarea<TScenarioFormSchemaInput>
             name="description"
             id="scenarioFormDescription"
-            label="Description"
-            placeholder="Describe the scenario"
+            label={t("form.description")}
+            placeholder={t("form.descriptionPlaceholder")}
             rows={3}
           />
         </div>
@@ -39,8 +42,8 @@ export default function ScenarioFormView({ onCancel }: ScenarioFormViewProps) {
           <FormInput<TScenarioFormSchemaInput>
             name="category"
             id="scenarioFormCategory"
-            label="Category"
-            placeholder="e.g. Safety"
+            label={t("form.category")}
+            placeholder={t("form.categoryPlaceholder")}
             required
           />
         </div>
@@ -49,12 +52,12 @@ export default function ScenarioFormView({ onCancel }: ScenarioFormViewProps) {
           <FormSelect<TScenarioFormSchemaInput>
             name="difficulty"
             id="scenarioFormDifficulty"
-            label="Difficulty"
-            placeholder="Select difficulty"
+            label={t("form.difficulty")}
+            placeholder={t("form.difficultyPlaceholder")}
             options={[
-              { label: "Beginner", value: "beginner" },
-              { label: "Intermediate", value: "intermediate" },
-              { label: "Advanced", value: "advanced" },
+              { label: t("difficulty.beginner"), value: "beginner" },
+              { label: t("difficulty.intermediate"), value: "intermediate" },
+              { label: t("difficulty.advanced"), value: "advanced" },
             ]}
             required
           />
@@ -66,7 +69,7 @@ export default function ScenarioFormView({ onCancel }: ScenarioFormViewProps) {
             id="scenarioFormSteps"
             type="number"
             min={0}
-            label="Steps"
+            label={t("form.steps")}
           />
         </div>
 
@@ -74,12 +77,12 @@ export default function ScenarioFormView({ onCancel }: ScenarioFormViewProps) {
           <FormSelect<TScenarioFormSchemaInput>
             name="status"
             id="scenarioFormStatus"
-            label="Status"
-            placeholder="Select status"
+            label={t("form.status")}
+            placeholder={t("form.statusPlaceholder")}
             options={[
-              { label: "Draft", value: "draft" },
-              { label: "Published", value: "published" },
-              { label: "Archived", value: "archived" },
+              { label: t("status.draft"), value: "draft" },
+              { label: t("status.published"), value: "published" },
+              { label: t("status.archived"), value: "archived" },
             ]}
             required
           />
@@ -93,10 +96,10 @@ export default function ScenarioFormView({ onCancel }: ScenarioFormViewProps) {
           color="neutral"
           onClick={onCancel}
         >
-          Cancel
+          {t("form.cancel")}
         </Button>
         <Button type="submit" id="scenarioFormSave">
-          Save
+          {t("form.save")}
         </Button>
       </div>
     </>

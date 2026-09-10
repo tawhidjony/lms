@@ -11,6 +11,7 @@ import ScenariosListFilter from "./scenarios.list.filter";
 import ScenariosListHeader from "./scenarios.list.header";
 
 export default function ScenariosListComponent() {
+  const t = useTranslations("creatorScenarios");
   const tCommon = useTranslations("Common");
   const params = { page: 0, limit: 10 };
   const { data, isPending, isError, error } = useGetListQuery({
@@ -24,7 +25,7 @@ export default function ScenariosListComponent() {
   if (isError) {
     return (
       <div className="text-sm text-red-500">
-        {error instanceof Error ? error.message : "Failed to load scenarios"}
+        {error instanceof Error ? error.message : t("list.error")}
       </div>
     );
   }
@@ -37,17 +38,17 @@ export default function ScenariosListComponent() {
         <div className="copia-table-toolbar flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b border-slate-100 bg-white">
           <input
             type="search"
-            placeholder="Search scenarios…"
+            placeholder={t("list.searchPlaceholder")}
             className="copia-table-search w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:max-w-xs"
           />
           <span className="copia-table-meta text-xs text-slate-500 sm:ml-auto">
-            Showing 1–8 of 12
+            {t("list.showingMeta", { from: 1, to: 8, total: 12 })}
           </span>
         </div>
         <UiTableComponent<Scenario>
           id="scenariosTable"
           data={data?.data ?? []}
-          columns={scenariosListColumns}
+          columns={scenariosListColumns(t)}
         />
         <div className="copia-table-pagination flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-t border-slate-100 bg-white text-xs text-slate-600">
           <div className="flex flex-wrap items-center gap-1.5">
@@ -56,7 +57,7 @@ export default function ScenariosListComponent() {
               className="copia-table-page-btn inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 "
               disabled
             >
-              Previous
+              {t("list.previous")}
             </button>
             <div className="flex flex-wrap items-center gap-1">
               <button
@@ -76,10 +77,12 @@ export default function ScenariosListComponent() {
               type="button"
               className="copia-table-page-btn inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 "
             >
-              Next
+              {t("list.next")}
             </button>
           </div>
-          <span className="text-slate-500">Page 1 of 2</span>
+          <span className="text-slate-500">
+            {t("list.pageOf", { current: 1, total: 2 })}
+          </span>
         </div>
       </div>
     </>
