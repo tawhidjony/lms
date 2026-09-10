@@ -1,3 +1,5 @@
+import CreatorQuizzes from "@/features/creator/quizzes/quizzes";
+
 export default function QuizzesPage() {
-  return <div>QuizzesPage</div>;
+  return <CreatorQuizzes />;
 }

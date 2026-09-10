@@ -1,3 +1,5 @@
+import CreatorCourses from "@/features/creator/courses/courses";
+
 export default function CoursesPage() {
-  return <div>CoursesPage</div>;
+  return <CreatorCourses />;
 }

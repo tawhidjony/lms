@@ -1,3 +1,5 @@
+import CreatorVideos from "@/features/creator/videos/videos";
+
 export default function VideosPage() {
-  return <div>VideosPage</div>;
+  return <CreatorVideos />;
 }
