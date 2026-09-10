@@ -1,5 +1,10 @@
-import CreatorScenarios from "@/features/creator/scenarios/scenarios";
+import ScenarioComponent from "@/features/creator/scenarios/scenario/scenario.component";
 
 export default function ScenariosPage() {
-  return <CreatorScenarios />;
+  return (
+    <>
+      {/* <ScenariosListComponent /> */}
+      <ScenarioComponent />
+    </>
+  );
 }
