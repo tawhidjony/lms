@@ -22,6 +22,16 @@
         "assignments": "Assignments",
         "departments": "Departments"
       }
+    },
+    "creatorLayout": {
+      "sidebar": {
+        "dashboard": "Dashboard",
+        "courses": "Courses",
+        "videos": "Videos",
+        "quizzes": "Quizzes",
+        "scenarios": "Scenarios",
+        "feedback": "Feedback"
+      }
     }
   }
 }

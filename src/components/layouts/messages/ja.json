@@ -22,6 +22,16 @@
         "assignments": "割当",
         "departments": "部署"
       }
+    },
+    "creatorLayout": {
+      "sidebar": {
+        "dashboard": "ダッシュボード",
+        "courses": "コース",
+        "videos": "動画",
+        "quizzes": "クイズ",
+        "scenarios": "シナリオ",
+        "feedback": "フィードバック"
+      }
     }
   }
 }

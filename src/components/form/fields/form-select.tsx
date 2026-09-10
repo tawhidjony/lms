@@ -1,4 +1,4 @@
-import { Select } from "@/components/ui";
+import { Select } from "@/components/ui/select";
 import React from "react";
 import {
   Controller,
